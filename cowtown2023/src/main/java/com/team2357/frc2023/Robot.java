@@ -2,7 +2,12 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package com.team2357.frc2023;
+
+import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
+import com.team2357.frc2023.subsystems.IntakeSubsystem;
+import com.team2357.frc2023.subsystems.ShooterSubsystem;
+import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -19,6 +24,11 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  public static SwerveDriveSubsystem drive;
+  public static ShooterSubsystem shooter;
+  public static IntakeSlideSubsystem slide;
+  public static IntakeSubsystem intake;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -27,6 +37,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    drive = new SwerveDriveSubsystem();
+    shooter = new ShooterSubsystem();
+    slide = new IntakeSlideSubsystem();
+    intake = new IntakeSubsystem();
+
     m_robotContainer = new RobotContainer();
   }
 
