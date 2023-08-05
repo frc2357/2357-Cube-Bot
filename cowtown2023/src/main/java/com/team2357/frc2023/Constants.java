@@ -4,6 +4,8 @@
 
 package com.team2357.frc2023;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 public final class Constants {
     public static final class CAN_ID {
         public static final int PIGEON_ID = 5;
@@ -26,6 +28,9 @@ public final class Constants {
 
         public static final int TOP_SHOOTER_MOTOR_ID = -1;
         public static final int BOTTOM_SHOOTER_MOTOR_ID = -1;
+
+        public static final int MASTER_SLIDE_MOTOR_ID = -1;
+        public static final int FOLLOWER_SLIDE_MOTOR_ID = -1;
     }
 
     public static final class SHOOTER {
@@ -63,6 +68,30 @@ public final class Constants {
     }
 
     public static final class INTAKE_SLIDE {
+        public static final boolean MASTER_MOTOR_INVERTED = false;
+        public static final boolean FOLLOWER_MOTOR_INVERTED = false;
+
+        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+        public static final int MOTOR_STALL_LIMIT_AMPS = 10;
+        public static final int MOTOR_FREE_LIMIT_AMPS = 10;
+
+        public static final double SLIDE_P = 0.0;
+        public static final double SLIDE_I = 0.0;
+        public static final double SLIDE_D = 0.0;
+        public static final double SLIDE_IZONE = 0.0;
+        public static final double SLIDE_FF = 0.0;
+
+        public static final double PID_MIN_OUTPUT = 0.0;
+        public static final double PID_MAX_OUTPUT = 0.0;
+        public static final double SMART_MOTION_MAX_VEL_RPM = 0.0;
+        public static final double SMART_MOTION_MIN_VEL_RPM = 0.0;
+        public static final double SMART_MOTION_MAX_ACC_RPM = 0.0;
+        public static final double SMART_MOTION_ALLOWED_ERROR = 0.0;
+
+        public static final double SLIDE_AXIS_MAX_SPEED = 0.05;
+
+        public static final double SLIDE_EXTENDED_ROTATIONS = 0;
+        public static final double SLIDE_RETRACTED_ROTATIONS = 0;
 
     }
 
@@ -79,5 +108,23 @@ public final class Constants {
 
         public static final double RUMBLE_INTENSITY = 0.5;
         public static final double RUMBLE_TIMEOUT_SECONDS_ON_TELEOP_AUTO = 1;
+    }
+
+    //Something in lib wanted it and I didn't care enough to fix it
+    public static final class BUTTONBOARD {
+        public static final String BUTTONBOARD_TABLE_NAME = "buttonboard";
+        public static final String ROW_TOPIC_NAME = "targetRow";
+        public static final String COLUMN_TOPIC_NAME = "targetCol";
+        public static final String GAMEPIECE_TOPIC_NAME = "targetType";
+        public static final String ALLIANCE_TOPIC_NAME = "alliance";
+
+        public static final String INTAKE_WINCH_TOPIC_NAME = "intakeWinch";
+        public static final String INTAKE_SPEED_TOPIC_NAME = "intakeSpeed";
+        public static final String ARM_ROTATION_TOPIC_NAME = "armRotation";
+        public static final String ARM_EXTENSION_TOPIC_NAME = "armExtension";
+
+        public static final String INTAKE_EXTEND_TOPIC_NAME = "intakeExtend";
+        public static final String WRIST_TOPIC_NAME = "wrist";
+        public static final String CLAW_TOGGLE_TOPIC_NAME = "clamp";
     }
 }
