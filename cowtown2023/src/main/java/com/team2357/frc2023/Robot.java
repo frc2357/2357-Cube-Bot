@@ -6,6 +6,8 @@ package com.team2357.frc2023;
 
 import org.littletonrobotics.junction.LoggedRobot;
 
+import com.team2357.frc2023.controls.OperatorControls;
+import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.IntakeSubsystem;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
@@ -30,6 +32,9 @@ public class Robot extends LoggedRobot {
   public static IntakeSlideSubsystem slide;
   public static IntakeSubsystem intake;
 
+  public static SwerveDriveControls driverControls;
+  public static OperatorControls operatorControls;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -42,6 +47,9 @@ public class Robot extends LoggedRobot {
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
     intake = new IntakeSubsystem();
+
+    driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
+    operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
 
     m_robotContainer = new RobotContainer();
   }

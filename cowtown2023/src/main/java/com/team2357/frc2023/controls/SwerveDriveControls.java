@@ -18,8 +18,8 @@ public class SwerveDriveControls implements RumbleInterface {
     private AxisThresholdTrigger m_rightTrigger;
     private AxisThresholdTrigger m_leftTrigger;
 
-    public SwerveDriveControls(XboxController controller, double deadband) {
-        m_controller = controller;
+    public SwerveDriveControls(int portNumber, double deadband) {
+        m_controller = new XboxController(portNumber);
         m_deadband = deadband;
         
         m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, 0.0);

@@ -7,8 +7,8 @@ public class OperatorControls implements RumbleInterface {
     
     private XboxController m_controller;
 
-    public OperatorControls(XboxController controller) {
-        m_controller = controller;
+    public OperatorControls(int portNumber) {
+        m_controller = new XboxController(portNumber);
 
         mapControls();
     }
