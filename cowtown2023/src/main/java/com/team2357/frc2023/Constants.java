@@ -110,21 +110,4 @@ public final class Constants {
         public static final double RUMBLE_TIMEOUT_SECONDS_ON_TELEOP_AUTO = 1;
     }
 
-    //Something in lib wanted it and I didn't care enough to fix it
-    public static final class BUTTONBOARD {
-        public static final String BUTTONBOARD_TABLE_NAME = "buttonboard";
-        public static final String ROW_TOPIC_NAME = "targetRow";
-        public static final String COLUMN_TOPIC_NAME = "targetCol";
-        public static final String GAMEPIECE_TOPIC_NAME = "targetType";
-        public static final String ALLIANCE_TOPIC_NAME = "alliance";
-
-        public static final String INTAKE_WINCH_TOPIC_NAME = "intakeWinch";
-        public static final String INTAKE_SPEED_TOPIC_NAME = "intakeSpeed";
-        public static final String ARM_ROTATION_TOPIC_NAME = "armRotation";
-        public static final String ARM_EXTENSION_TOPIC_NAME = "armExtension";
-
-        public static final String INTAKE_EXTEND_TOPIC_NAME = "intakeExtend";
-        public static final String WRIST_TOPIC_NAME = "wrist";
-        public static final String CLAW_TOGGLE_TOPIC_NAME = "clamp";
-    }
 }
