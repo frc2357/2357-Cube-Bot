@@ -1,8 +1,8 @@
 package com.team2357.lib.subsystems;
 
 import com.team2357.lib.commands.InvertDriveCommand; //Imported for javadoc
-
-import edu.wpi.first.networktables.DoubleSubscriber;
+import com.team2357.lib.subsystems.LimelightSubsystem;
+import edu.wpi.first.networktables.NetworkTableEntry;
 
 /**
  * The subsystem for the limelight. This version is toggleable, so that when the robot switches sides,
@@ -41,7 +41,8 @@ public class TogglableLimelightSubsystem extends LimelightSubsystem {
     }
   }
 
-  private DoubleSubscriber m_stream = super.m_table.getDoubleTopic("stream").subscribe(1.0);
+  private NetworkTableEntry m_stream = super.m_Table.getEntry("stream");
+  private NetworkTableEntry m_pipeline = super.m_Table.getEntry("pipeline");
 
   /**
    * Sets the camera stream.
@@ -49,16 +50,19 @@ public class TogglableLimelightSubsystem extends LimelightSubsystem {
    * @param isLimelightPrimary True if the limelight is primary, false if not.
    */
   public TogglableLimelightSubsystem(boolean isLimelightPrimary) {
-    super("limelight");
     setStream(isLimelightPrimary);
     setPipeline(PipelineIndex.HUMAN_VIEW);
   }
 
   public void setPipeline(PipelineIndex p) {
-    super.setPipeline(p.index);
+    m_pipeline.setDouble(p.index);
+  }
+
+  public void setStream(boolean isLimelightPrimary) {
+    m_stream.setValue(isLimelightPrimary ? 1 : 2);
   }
 
   public void toggleStream() {
-    setStream(m_stream.get() != 1.0);
+    setStream(m_stream.getDouble(1.0) != 1.0);
   }
 }

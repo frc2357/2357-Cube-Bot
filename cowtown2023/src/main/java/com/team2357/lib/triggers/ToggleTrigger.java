@@ -1,6 +1,7 @@
 package com.team2357.lib.triggers;
 
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -11,7 +12,14 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class ToggleTrigger extends Trigger {
 
+  private GenericEntry entry;
+
   public ToggleTrigger(GenericEntry entry) {
-    super(() -> entry.getBoolean(false));
+    this.entry = entry;
+  }
+
+  @Override
+  public boolean getAsBoolean() {
+    return this.entry.getBoolean(false);
   }
 }

@@ -32,9 +32,10 @@ public class Utility {
    * @param pid     PID values to set
    */
   public static void configTalonPID(
-      WPI_TalonSRX talon,
-      int slotIdx,
-      PIDValues pid) {
+    WPI_TalonSRX talon,
+    int slotIdx,
+    PIDValues pid
+  ) {
     talon.config_kP(slotIdx, pid.kp);
     talon.config_kI(slotIdx, pid.ki);
     talon.config_kD(slotIdx, pid.kd);
