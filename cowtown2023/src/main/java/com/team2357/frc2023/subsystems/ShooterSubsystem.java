@@ -26,4 +26,19 @@ public class ShooterSubsystem extends SubsystemBase {
         m_bottomShooterMotor.set(0.0);
     }
 
+     // {degrees, top shooter percentage, bottom shooter percentage}
+    private static final double[][] degreesToPercentage = {
+        //these degrees need to be tuned to find what degree we want for a distance
+        { 20, 0, 0 },   
+        { 15, 0, 0 },    
+        { 10, 0, 0 },
+        { 5, 0, 0 },    
+        { 0, 0, 0 },
+        { -5.0, 0, 0 },  
+        { -10, 0, 0 },  
+        { -15, 0, 0 },    
+        { -20, 0, 0 }
+    };
+
+
 }
