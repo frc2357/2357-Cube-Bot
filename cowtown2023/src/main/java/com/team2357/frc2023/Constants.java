@@ -48,6 +48,14 @@ public final class Constants {
 
         public static final int TOP_MOTOR_LIMIT_AMPS = 10;
         public static final int BOTTOM_MOTOR_LIMIT_AMPS = 10;
+
+        public static final double TOP_MOTOR_PID_P = 0;
+        public static final double TOP_MOTOR_PID_I = 0;
+        public static final double TOP_MOTOR_PID_D = 0;
+
+        public static final double BOTTOM_MOTOR_PID_P = 0;
+        public static final double BOTTOM_MOTOR_PID_I = 0;
+        public static final double BOTTOM_MOTOR_PID_D = 0;
     }
 
     public static final class INTAKE_ROLLER {
