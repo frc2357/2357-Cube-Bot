@@ -15,7 +15,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private CANSparkMax m_bottomShooterMotor;
     private SHOOTER m_config;
     private boolean m_isClosedLoopEnabled;
-    private int m_neoMaxRPM =5676;
+    private static final int m_neoMaxRPM = 5676;
     
     public ShooterSubsystem() {
         m_topShooterMotor = new CANSparkMax(Constants.CAN_ID.TOP_SHOOTER_MOTOR_ID, MotorType.kBrushless);
