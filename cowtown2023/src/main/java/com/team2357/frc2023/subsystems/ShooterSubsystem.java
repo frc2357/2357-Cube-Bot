@@ -15,6 +15,7 @@ public class ShooterSubsystem extends SubsystemBase {
     private CANSparkMax m_bottomShooterMotor;
     private SHOOTER m_config;
     private boolean m_isClosedLoopEnabled;
+    private int m_neoMaxRPM =5676;
     
     public ShooterSubsystem() {
         m_topShooterMotor = new CANSparkMax(Constants.CAN_ID.TOP_SHOOTER_MOTOR_ID, MotorType.kBrushless);
@@ -51,9 +52,12 @@ public class ShooterSubsystem extends SubsystemBase {
         m_isClosedLoopEnabled = false;
     }
 
-     // {degrees, top shooter percentage, bottom shooter percentage}
-    private static final double[][] degreesToPercentage = {
-        //these degrees need to be tuned to find what degree we want for a distance
+    public void setClosedLoopEnabled(){
+        m_isClosedLoopEnabled = true;
+    }
+
+     // {degrees, top shooter RPM, bottom shooter RPM}
+    private static final double[][] degreesToRPM = {
         { 20, 0, 0 },
         { 15, 0, 0 },
         { 10, 0, 0 },
@@ -73,6 +77,39 @@ public class ShooterSubsystem extends SubsystemBase {
 
     }
 
+    /**
+     * Supposed to set the shooter motors output based on a vision targets angle
+     * @param angle The angle of the target
+     */
+    private void setShooterRPMVision(double angle){
+        int curveSegmentIndex = RobotMath.getCurveSegmentIndex(degreesToRPM, angle);
+        if (curveSegmentIndex == -1) {
+            System.err.println("----- Curve segment index out of bounds -----");
+            return;
+        }
+
+        double[] pointA = degreesToRPM[curveSegmentIndex];
+        double[] pointB = degreesToRPM[curveSegmentIndex + 1];
+
+        double highAngle = pointA[0];
+        double lowAngle = pointB[0];
+        double highBottomRPMs = pointA[1];
+        double lowBottomRPMs = pointB[1];
+        double highTopRPMs = pointA[2];
+        double lowTopRPMs = pointB[2];
+
+        double bottomRpms = RobotMath.lineralyInterpolate(highBottomRPMs, lowBottomRPMs, highAngle, lowAngle, angle);
+
+        double topRpms = RobotMath.lineralyInterpolate(highTopRPMs, lowTopRPMs, highAngle, lowAngle, angle);
+
+        if (Double.isNaN(bottomRpms) || Double.isNaN(topRpms)) {
+            System.err.println("----- Invalid shooter rpms -----");
+            return;
+        }
+
+        //the RPM is divided by the empirical neo max RPM to get the percentage output
+        runShooter(topRpms/m_neoMaxRPM, bottomRpms/m_neoMaxRPM);
+    }
     
 
 }
