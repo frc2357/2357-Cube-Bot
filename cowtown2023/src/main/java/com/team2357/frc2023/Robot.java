@@ -48,21 +48,10 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
-    Logger.getInstance().recordMetadata("ProjectName", "MyProject"); // Set a metadata value
-
-if (isReal()) {
-    Logger.getInstance().addDataReceiver(new WPILOGWriter("/media/sda1/")); // Log to a USB stick
-    Logger.getInstance().addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
+    // This sets up the logging, so dont mess with it unless you know what your doing.
+    Logger.getInstance().addDataReceiver(new WPILOGWriter("home/lvuser/Logs")); // Log to a USB stick
     new PowerDistribution(1, ModuleType.kRev); // Enables power distribution logging
-} else {
-    setUseTiming(false); // Run as fast as possible
-    String logPath = LogFileUtil.findReplayLog(); // Pull the replay log from AdvantageScope (or prompt the user)
-    Logger.getInstance().setReplaySource(new WPILOGReader(logPath)); // Read replay log
-    Logger.getInstance().addDataReceiver(new WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim"))); // Save outputs to a new log
-}
-
-// Logger.getInstance().disableDeterministicTimestamps() // See "Deterministic Timestamps" in the "Understanding Data Flow" page
-Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
+    Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem();
