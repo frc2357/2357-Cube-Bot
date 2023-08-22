@@ -13,7 +13,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     private CANSparkMax m_topShooterMotor;
     private CANSparkMax m_bottomShooterMotor;
-    private SHOOTER m_config;
     private boolean m_isClosedLoopEnabled;
     private static final int m_neoMaxRPM = 5676;
     
@@ -23,22 +22,21 @@ public class ShooterSubsystem extends SubsystemBase {
         m_isClosedLoopEnabled = false;
     }
 
-    public void configure(SHOOTER config){
-        m_config = config;
+    public void configure(){
 
-        m_topShooterMotor.setInverted(m_config.TOP_MOTOR_INVERTED);
-        m_bottomShooterMotor.setInverted(m_config.BOTTOM_MOTOR_INVERTED);
+        m_topShooterMotor.setInverted(SHOOTER.TOP_MOTOR_INVERTED);
+        m_bottomShooterMotor.setInverted(SHOOTER.BOTTOM_MOTOR_INVERTED);
 
-        m_topShooterMotor.setSmartCurrentLimit(m_config.TOP_MOTOR_LIMIT_AMPS);
-        m_bottomShooterMotor.setSmartCurrentLimit(m_config.BOTTOM_MOTOR_LIMIT_AMPS);
+        m_topShooterMotor.setSmartCurrentLimit(SHOOTER.TOP_MOTOR_LIMIT_AMPS);
+        m_bottomShooterMotor.setSmartCurrentLimit(SHOOTER.BOTTOM_MOTOR_LIMIT_AMPS);
 
-        m_topShooterMotor.getPIDController().setP(m_config.TOP_MOTOR_PID_P);
-        m_topShooterMotor.getPIDController().setI(m_config.TOP_MOTOR_PID_I);
-        m_topShooterMotor.getPIDController().setD(m_config.TOP_MOTOR_PID_D);
+        m_topShooterMotor.getPIDController().setP(SHOOTER.TOP_MOTOR_PID_P);
+        m_topShooterMotor.getPIDController().setI(SHOOTER.TOP_MOTOR_PID_I);
+        m_topShooterMotor.getPIDController().setD(SHOOTER.TOP_MOTOR_PID_D);
 
-        m_bottomShooterMotor.getPIDController().setP(m_config.BOTTOM_MOTOR_PID_P);
-        m_bottomShooterMotor.getPIDController().setI(m_config.BOTTOM_MOTOR_PID_I);
-        m_bottomShooterMotor.getPIDController().setD(m_config.BOTTOM_MOTOR_PID_D);
+        m_bottomShooterMotor.getPIDController().setP(SHOOTER.BOTTOM_MOTOR_PID_P);
+        m_bottomShooterMotor.getPIDController().setI(SHOOTER.BOTTOM_MOTOR_PID_I);
+        m_bottomShooterMotor.getPIDController().setD(SHOOTER.BOTTOM_MOTOR_PID_D);
     }
 
     public void runShooter(double topPercentOutput, double bottomPercentOutput) {
