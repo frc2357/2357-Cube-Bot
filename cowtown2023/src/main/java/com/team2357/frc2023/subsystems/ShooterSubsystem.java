@@ -14,7 +14,6 @@ public class ShooterSubsystem extends ClosedLoopSubsystem{
 
     private CANSparkMax m_topShooterMotor;
     private CANSparkMax m_bottomShooterMotor;
-    private static final int m_neoMaxRPM = 5676;
     
     public ShooterSubsystem() {
         m_topShooterMotor = new CANSparkMax(Constants.CAN_ID.TOP_SHOOTER_MOTOR_ID, MotorType.kBrushless);
@@ -100,7 +99,7 @@ public class ShooterSubsystem extends ClosedLoopSubsystem{
         }
 
         //the RPM is divided by the empirical neo max RPM to get the percentage output
-        runShooter(topRpms/m_neoMaxRPM, bottomRpms/m_neoMaxRPM);
+        runShooter(topRpms/Constants.SHOOTER.NEO_MAXIMUM_RPM, bottomRpms/Constants.SHOOTER.NEO_MAXIMUM_RPM);
     }
     
 

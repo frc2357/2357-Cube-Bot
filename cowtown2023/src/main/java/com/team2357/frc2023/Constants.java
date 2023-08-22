@@ -56,6 +56,8 @@ public final class Constants {
         public static final double BOTTOM_MOTOR_PID_P = 0;
         public static final double BOTTOM_MOTOR_PID_I = 0;
         public static final double BOTTOM_MOTOR_PID_D = 0;
+
+        public static final int NEO_MAXIMUM_RPM = 5676;
     }
 
     public static final class INTAKE_ROLLER {
