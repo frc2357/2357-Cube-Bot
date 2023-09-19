@@ -4,7 +4,12 @@
 
 package com.team2357.frc2023;
 
+import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.networktables.NT4Publisher;
+import org.littletonrobotics.junction.wpilog.WPILOGReader;
+import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
@@ -13,6 +18,8 @@ import com.team2357.frc2023.subsystems.IntakeSubsystem;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -41,6 +48,10 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
+    // This sets up the logging, so dont mess with it unless you know what your doing.
+    Logger.getInstance().addDataReceiver(new WPILOGWriter("home/lvuser/Logs")); // Log to a USB stick
+    new PowerDistribution(1, ModuleType.kRev); // Enables power distribution logging
+    Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem();
