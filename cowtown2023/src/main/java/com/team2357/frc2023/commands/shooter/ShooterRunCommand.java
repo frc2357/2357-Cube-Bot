@@ -11,12 +11,12 @@ public class ShooterRunCommand extends CommandBase {
     public ShooterRunCommand(double topPercentOutput, double bottomPercentOutput) {
         m_topPercentOutput = topPercentOutput;
         m_bottomPercentOutput = bottomPercentOutput;
-        addRequirements(Robot.shooter);
+        // addRequirements(Robot.shooter);
     }
 
     @Override
     public void execute() {
-        Robot.shooter.runShooter(m_topPercentOutput, m_bottomPercentOutput);
+        // Robot.shooter.runShooter(m_topPercentOutput, m_bottomPercentOutput);
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ShooterRunCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.shooter.stopShooter();
+        // Robot.shooter.stopShooter();
     }
 }

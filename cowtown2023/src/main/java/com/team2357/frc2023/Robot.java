@@ -32,10 +32,10 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
-  public static ShooterSubsystem shooter;
-  public static IntakeSlideSubsystem slide;
-  public static IntakeSubsystem intake;
-  public static DualLimelightManagerSubsystem limelights;
+  // public static ShooterSubsystem shooter;
+  // public static IntakeSlideSubsystem slide;
+  // public static IntakeSubsystem intake;
+  // public static DualLimelightManagerSubsystem limelights;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -49,9 +49,9 @@ public class Robot extends LoggedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
-    shooter = new ShooterSubsystem();
-    slide = new IntakeSlideSubsystem();
-    intake = new IntakeSubsystem();
+    // shooter = new ShooterSubsystem();
+    // slide = new IntakeSlideSubsystem();
+    // intake = new IntakeSubsystem();
 
     driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
     operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
@@ -78,7 +78,7 @@ public class Robot extends LoggedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    shooter.stopShooter();
+    // shooter.stopShooter();
   }
 
   @Override

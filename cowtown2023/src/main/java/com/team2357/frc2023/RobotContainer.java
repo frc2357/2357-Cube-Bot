@@ -22,7 +22,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     SwerveDriveControls driveControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, null)); 
+    Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, driveControls)); 
 
   }
 
