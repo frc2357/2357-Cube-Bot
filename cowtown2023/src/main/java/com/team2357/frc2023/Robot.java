@@ -35,7 +35,7 @@ public class Robot extends LoggedRobot {
   public static ShooterSubsystem shooter;
   public static IntakeSlideSubsystem slide;
   public static IntakeSubsystem intake;
-  public static DualLimelightManagerSubsystem limelights;
+  // public static DualLimelightManagerSubsystem limelights;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
