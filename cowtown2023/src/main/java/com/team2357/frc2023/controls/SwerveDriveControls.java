@@ -1,7 +1,7 @@
 package com.team2357.frc2023.controls;
 
-import com.team2357.frc2023.commands.intakeRoller.IntakeEjectCubeCommand;
-import com.team2357.frc2023.commands.intakeRoller.IntakePickupCubeCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerEjectCubeCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -29,8 +29,8 @@ public class SwerveDriveControls implements RumbleInterface {
     }
 
     private void mapControls() {
-        m_rightTrigger.whileTrue(new IntakePickupCubeCommand());
-        m_leftTrigger.whileTrue(new IntakeEjectCubeCommand());
+        m_rightTrigger.whileTrue(new IntakeRollerPickupCubeCommand());
+        m_leftTrigger.whileTrue(new IntakeRollerEjectCubeCommand());
     }
 
     public double getX() {

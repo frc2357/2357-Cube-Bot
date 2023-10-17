@@ -26,11 +26,14 @@ public final class Constants {
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR_ID = 18;
         public static final int BACK_RIGHT_MODULE_STEER_ENCODER_ID = 22;
 
-        public static final int TOP_SHOOTER_MOTOR_ID = -1;
-        public static final int BOTTOM_SHOOTER_MOTOR_ID = -1;
+        public static final int TOP_SHOOTER_MOTOR_ID = 23;
+        public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
 
-        public static final int MASTER_SLIDE_MOTOR_ID = -1;
-        public static final int FOLLOWER_SLIDE_MOTOR_ID = -1;
+        public static final int TOP_INTAKE_ROLLER_MOTOR_ID = 20;
+        public static final int BOTTOM_INTAKE_ROLLER_MOTOR_ID = 19;
+
+        public static final int MASTER_SLIDE_MOTOR_ID = 21;
+        public static final int FOLLOWER_SLIDE_MOTOR_ID = 22;
     }
 
     public static final class SHOOTER {
@@ -61,20 +64,31 @@ public final class Constants {
     }
 
     public static final class INTAKE_ROLLER {
+        // Configuration
         public static final boolean TOP_MOTOR_INVERTED = false;
         public static final boolean BOTTOM_MOTOR_INVERTED = false;
-
-        public static final double TOP_MOTOR_INTAKE_PERCENT_OUTPUT = 0.0;
-        public static final double BOTTOM_MOTOR_INTAKE_PERCENT_OUTPUT = 0.0;
         
-        public static final double TOP_MOTOR_EJECT_PERCENT_OUTPUT = 0.0;
-        public static final double BOTTOM_MOTOR_EJECT_PERCENT_OUTPUT = 0.0;
-        
-        public static final double TOP_MOTOR_INDEX_PERCENT_OUTPUT = 0.0;
-        public static final double BOTTOM_MOTOR_INDEX_PERCENT_OUTPUT = 0.0;
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 10;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 10;
 
-        public static final int TOP_MOTOR_LIMIT_AMPS = 10;
-        public static final int BOTTOM_MOTOR_LIMIT_AMPS = 10;
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 10;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 10;
+
+        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
+
+        // Motor speeds
+        public static final double TOP_MOTOR_INTAKE_PERCENT_OUTPUT = +0.5;
+        public static final double BOTTOM_MOTOR_INTAKE_PERCENT_OUTPUT = +0.75;
+        
+        public static final double TOP_MOTOR_EJECT_PERCENT_OUTPUT = -0.5;
+        public static final double BOTTOM_MOTOR_EJECT_PERCENT_OUTPUT = +0.35;
+        
+        public static final double TOP_MOTOR_INDEX_PERCENT_OUTPUT = +0.5;
+        public static final double BOTTOM_MOTOR_INDEX_PERCENT_OUTPUT = -0.35;
+
+        public static final double TOP_MOTOR_ROLL_PERCENT_OUTPUT = +0.5;
+        public static final double BOTTOM_MOTOR_ROLL_PERCENT_OUTPUT = +0.35;
+
     }
 
     public static final class INTAKE_SLIDE {

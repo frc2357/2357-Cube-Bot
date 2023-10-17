@@ -14,7 +14,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
-import com.team2357.frc2023.subsystems.IntakeSubsystem;
+import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
@@ -37,7 +37,7 @@ public class Robot extends LoggedRobot {
   public static SwerveDriveSubsystem drive;
   public static ShooterSubsystem shooter;
   public static IntakeSlideSubsystem slide;
-  public static IntakeSubsystem intake;
+  public static IntakeRollerSubsystem intake;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -57,7 +57,7 @@ public class Robot extends LoggedRobot {
     drive = new SwerveDriveSubsystem();
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
-    intake = new IntakeSubsystem();
+    intake = new IntakeRollerSubsystem();
 
     driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
     operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
