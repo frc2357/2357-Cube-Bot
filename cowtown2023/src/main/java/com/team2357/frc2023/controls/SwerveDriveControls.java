@@ -1,12 +1,13 @@
 package com.team2357.frc2023.controls;
 
 import com.team2357.frc2023.Robot;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerEjectCubeCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.XboxRaw;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -17,11 +18,17 @@ public class SwerveDriveControls implements RumbleInterface {
 
     public static boolean isFlipped;
 
+    public AxisThresholdTrigger m_rightTrigger;
+    public AxisThresholdTrigger m_leftTrigger;
+
     private JoystickButton m_backButton;
 
     public SwerveDriveControls(int portNumber, double deadband) {
         m_controller = new XboxController(portNumber);
         m_deadband = deadband;
+        
+        m_rightTrigger = new AxisThresholdTrigger(m_controller, XboxRaw.TriggerRight, 0.0);
+        m_leftTrigger = new AxisThresholdTrigger(m_controller, XboxRaw.TriggerLeft, 0.0);
         
         m_backButton = new JoystickButton(m_controller, XboxRaw.Back.value);
         
@@ -32,6 +39,8 @@ public class SwerveDriveControls implements RumbleInterface {
         m_backButton.onTrue(new InstantCommand(() -> {
             Robot.drive.zeroGyro();
         }));
+        m_rightTrigger.whileTrue(new IntakeRollerPickupCubeCommand());
+        m_leftTrigger.whileTrue(new IntakeRollerEjectCubeCommand());
     }
 
     public double getX() {

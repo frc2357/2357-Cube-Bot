@@ -1,6 +1,8 @@
 package com.team2357.lib.triggers;
 
 import com.team2357.lib.util.ControllerAxis;
+import com.team2357.lib.util.XboxRaw;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -12,11 +14,11 @@ public class AxisThresholdTrigger extends Trigger {
 
   public AxisThresholdTrigger(
       XboxController controller,
-      Axis axis,
+      XboxRaw triggerright,
       double triggerThreshold) {
     this.triggerThreshold = triggerThreshold;
     this.controllerAxis = () -> {
-      switch (axis) {
+      switch (triggerright) {
         case kLeftX:
           return controller.getLeftX();
         case kLeftY:
