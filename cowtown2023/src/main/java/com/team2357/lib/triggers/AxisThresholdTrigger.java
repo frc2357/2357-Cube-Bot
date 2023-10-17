@@ -14,11 +14,11 @@ public class AxisThresholdTrigger extends Trigger {
 
   public AxisThresholdTrigger(
       XboxController controller,
-      XboxRaw triggerright,
+      int value,
       double triggerThreshold) {
     this.triggerThreshold = triggerThreshold;
     this.controllerAxis = () -> {
-      switch (triggerright) {
+      switch (value) {
         case kLeftX:
           return controller.getLeftX();
         case kLeftY:
