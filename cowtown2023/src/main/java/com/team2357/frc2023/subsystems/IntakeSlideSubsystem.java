@@ -2,6 +2,7 @@ package com.team2357.frc2023.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.team2357.frc2023.Constants;
 import com.team2357.lib.subsystems.ClosedLoopSubsystem;
 import com.team2357.lib.util.Utility;
@@ -22,8 +23,8 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
     private SlideState m_desiredState;
 
     public IntakeSlideSubsystem() {
-        m_masterSlideMotor = new CANSparkMax(Constants.CAN_ID.MASTER_SLIDE_MOTOR_ID, null);
-        m_followerSlideMotor = new CANSparkMax(Constants.CAN_ID.FOLLOWER_SLIDE_MOTOR_ID, null);
+        m_masterSlideMotor = new CANSparkMax(Constants.CAN_ID.MASTER_SLIDE_MOTOR_ID, MotorType.kBrushless);
+        m_followerSlideMotor = new CANSparkMax(Constants.CAN_ID.FOLLOWER_SLIDE_MOTOR_ID, MotorType.kBrushless);
 
         configure();
     }

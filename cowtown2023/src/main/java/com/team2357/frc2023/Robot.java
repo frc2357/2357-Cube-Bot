@@ -34,7 +34,7 @@ public class Robot extends LoggedRobot {
   public static SwerveDriveSubsystem drive;
   public static ShooterSubsystem shooter;
   public static IntakeSlideSubsystem slide;
-  public static IntakeSubsystem intake;
+  // public static IntakeSubsystem intake;
   // public static DualLimelightManagerSubsystem limelights;
 
   public static SwerveDriveControls driverControls;
@@ -51,10 +51,10 @@ public class Robot extends LoggedRobot {
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
-    intake = new IntakeSubsystem();
+    // intake = new IntakeSubsystem();
 
-    driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
+    // driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
+    // operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
 
     m_robotContainer = new RobotContainer();
   }

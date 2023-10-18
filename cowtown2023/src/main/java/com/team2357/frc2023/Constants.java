@@ -12,25 +12,21 @@ public final class Constants {
 
         public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR_ID = 11;
         public static final int FRONT_LEFT_MODULE_STEER_MOTOR_ID = 12;
-        public static final int FRONT_LEFT_MODULE_STEER_ENCODER_ID = 19;
 
         public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR_ID = 13;
         public static final int FRONT_RIGHT_MODULE_STEER_MOTOR_ID = 14;
-        public static final int FRONT_RIGHT_MODULE_STEER_ENCODER_ID = 20;
 
         public static final int BACK_LEFT_MODULE_DRIVE_MOTOR_ID = 15;
         public static final int BACK_LEFT_MODULE_STEER_MOTOR_ID = 16;
-        public static final int BACK_LEFT_MODULE_STEER_ENCODER_ID = 21;
 
         public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR_ID = 17;
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR_ID = 18;
-        public static final int BACK_RIGHT_MODULE_STEER_ENCODER_ID = 22;
 
-        public static final int TOP_SHOOTER_MOTOR_ID = -1;
-        public static final int BOTTOM_SHOOTER_MOTOR_ID = -1;
+        public static final int TOP_SHOOTER_MOTOR_ID = 23;
+        public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
 
-        public static final int MASTER_SLIDE_MOTOR_ID = -1;
-        public static final int FOLLOWER_SLIDE_MOTOR_ID = -1;
+        public static final int MASTER_SLIDE_MOTOR_ID = 21;
+        public static final int FOLLOWER_SLIDE_MOTOR_ID = 22;
     }
 
     public static final class SHOOTER {
@@ -113,7 +109,7 @@ public final class Constants {
         public static final int DRIVE_CONTROLLER_PORT = 0;
         public static final int OPERATOR_CONTROLLER_PORT = 1;
 
-        public static final double DRIVE_CONTROLLER_DEADBAND = 0.05;
+        public static final double DRIVE_CONTROLLER_DEADBAND = 0.1;
 
         public static final double RUMBLE_INTENSITY = 0.5;
         public static final double RUMBLE_TIMEOUT_SECONDS_ON_TELEOP_AUTO = 1;
