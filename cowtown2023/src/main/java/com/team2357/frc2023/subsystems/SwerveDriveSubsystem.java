@@ -10,10 +10,10 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import swervelib.SwerveDrive;
-import swervelib.parser.SwerveParser;
-import swervelib.telemetry.SwerveDriveTelemetry;
-import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+import com.swervelib.SwerveDrive;
+import com.swervelib.parser.SwerveParser;
+import com.swervelib.telemetry.SwerveDriveTelemetry;
+import com.swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 public class SwerveDriveSubsystem extends SubsystemBase {
 
@@ -30,6 +30,12 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         m_swerve.drive(translation, rotation, fieldRelative, isOpenLoop);
+    }
+
+    public ChassisSpeeds getTargetSpeeds(double x, double y, Rotation2d rotation) {
+        return m_swerve.swerveController.getTargetSpeeds(x, y, rotation.getRadians(),
+                getYaw().getRadians());
+
     }
 
     @Override
@@ -83,28 +89,28 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     public void updatePoseEstimator() {
 
-		// LimelightSubsystem leftLL = Robot.limelights.getLimelight(LIMELIGHT.LEFT);
-		// LimelightSubsystem rightLL = Robot.limelights.getLimelight(LIMELIGHT.RIGHT);
+        // LimelightSubsystem leftLL = Robot.limelights.getLimelight(LIMELIGHT.LEFT);
+        // LimelightSubsystem rightLL = Robot.limelights.getLimelight(LIMELIGHT.RIGHT);
 
-		// Pose2d leftPose = leftLL.getCurrentAllianceLimelightPose();
-		// Pose2d rightPose = rightLL.getCurrentAllianceLimelightPose();
+        // Pose2d leftPose = leftLL.getCurrentAllianceLimelightPose();
+        // Pose2d rightPose = rightLL.getCurrentAllianceLimelightPose();
 
-		// double leftTime = leftLL.getCurrentAllianceBotposeTimestamp();
-		// double rightTime = rightLL.getCurrentAllianceBotposeTimestamp();
+        // double leftTime = leftLL.getCurrentAllianceBotposeTimestamp();
+        // double rightTime = rightLL.getCurrentAllianceBotposeTimestamp();
 
-		// if (leftPose != null) {
-		// 	m_swerve.addVisionMeasurement(leftPose, leftTime, false, null);
-		// }
+        // if (leftPose != null) {
+        // m_swerve.addVisionMeasurement(leftPose, leftTime, false, null);
+        // }
 
-		// if (rightPose != null) {
-		// 	m_swerve.addVisionMeasurement(rightPose, rightTime, false, null);
-		// }
+        // if (rightPose != null) {
+        // m_swerve.addVisionMeasurement(rightPose, rightTime, false, null);
+        // }
 
         m_swerve.updateOdometry();
-		// m_poseEstimator.update(getGyroscopeRotation(),
-		// 		new SwerveModulePosition[] { m_frontLeftModule.getPosition(),
-		// 				m_frontRightModule.getPosition(),
-		// 				m_backLeftModule.getPosition(), m_backRightModule.getPosition() });
-	}
+        // m_poseEstimator.update(getGyroscopeRotation(),
+        // new SwerveModulePosition[] { m_frontLeftModule.getPosition(),
+        // m_frontRightModule.getPosition(),
+        // m_backLeftModule.getPosition(), m_backRightModule.getPosition() });
+    }
 
 }

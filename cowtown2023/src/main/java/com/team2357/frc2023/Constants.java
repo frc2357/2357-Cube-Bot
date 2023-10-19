@@ -102,7 +102,7 @@ public final class Constants {
     }
 
     public static final class SWERVE {
-
+        // public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 
     }
 
     public static final class CONTROLLER {
