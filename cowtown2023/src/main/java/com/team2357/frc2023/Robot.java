@@ -48,7 +48,7 @@ public class Robot extends LoggedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
+    drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/falcon"));
     // shooter = new ShooterSubsystem();
     // slide = new IntakeSlideSubsystem();
     // intake = new IntakeSubsystem();
