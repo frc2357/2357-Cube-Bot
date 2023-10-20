@@ -303,10 +303,6 @@ public class SwerveDrive
 
     // Calculate required module states via kinematics
     SwerveModuleState[] swerveModuleStates = kinematics.toSwerveModuleStates(velocity);
-    for (int i = 0;i < swerveModuleStates.length;i++) {
-      System.out.println(swerveModuleStates[i]);
-    }
-    System.out.println();
 
     setRawModuleStates(swerveModuleStates, isOpenLoop);
   }
