@@ -5,6 +5,8 @@
 package com.team2357.frc2023;
 
 import java.io.File;
+import java.util.TimerTask;
+
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -12,6 +14,7 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
+import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
@@ -30,6 +33,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends LoggedRobot {
   private Command m_autonomousCommand;
+  private Command m_setCoastCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -53,6 +57,8 @@ public class Robot extends LoggedRobot {
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
 
     m_robotContainer = new RobotContainer();
+
+    m_setCoastCommand = new SetCoastOnDisableCommand();
   }
 
   /**
@@ -75,9 +81,7 @@ public class Robot extends LoggedRobot {
   @Override
   public void disabledInit() {
     // Wait 5 seconds then set the drive motors to coast (to allow the robot to be pushed)
-    long disabledStart = System.currentTimeMillis();
-    while (System.currentTimeMillis() - disabledStart != Constants.SWERVE.DISABLED_WAIT_TO_BREAK_MILLIS);
-    drive.setBrakeMode(false);
+    m_setCoastCommand.schedule();
   }
 
   @Override
