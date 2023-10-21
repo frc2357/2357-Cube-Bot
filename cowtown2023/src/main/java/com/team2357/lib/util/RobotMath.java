@@ -78,7 +78,7 @@ public class RobotMath {
    * @param index the index of the row of the 2d curve array
    * @return The unknown value on the curve point (y)
    */
-  public static double linearlyInterpolate(
+  public static double lineralyInterpolate(
     double y2,
     double y1,
     double x2,
