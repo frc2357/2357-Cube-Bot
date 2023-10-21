@@ -7,13 +7,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Before Running:
@@ -50,23 +50,82 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  * effect of the GUI layout.
  */
 public class Robot extends TimedRobot {
+  // All PID values are for the intake slide mechanism
   private static final int deviceID = 1;
-  private CANSparkMax m_motor;
+  private CANSparkMax m_masterSlideMotor, m_followerSlideMotor, m_topShooterMotor, m_bottomShooterMotor, m_topIntakeMotor, m_bottomIntakeMotor;
   private SparkMaxPIDController m_pidController;
   private RelativeEncoder m_encoder;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVel, maxAcc, allowedErr;
 
+  public double topShooterLowPO, bottomShooterLowPO, topShooterMidPO, bottomShooterMidPO, topShooterHighPO, bottomShooterHighPO, topShooterFarPO, bottomShooterFarPO;
+
+  public double topIntakePickupPO, bottomIntakePickupPO, topIntakeEjectPO, bottomIntakeEjectPO, topIntakeIndexPO, bottomIntakeIndexPO;
+
+  // can ids
+  final int BOTTOM_INTAKE_ROLLER_MOTOR_ID = 19;
+  final int TOP_INTAKE_ROLLER_MOTOR_ID = 20;
+  final int MASTER_INTAKE_SLIDE_MOTOR_ID = 21;
+  final int FOLLOWER_INTAKE_SLIDE_MOTOR_ID = 22;
+  final int TOP_SHOOTER_MOTOR_ID = 23;
+  final int BOTTOM_SHOOTER_MOTOR_ID = 24;
+
+  XboxController controller = new XboxController(0);
+
+  // TODO: Add config and current limiting
+
   @Override
   public void robotInit() {
     // initialize motor
-    m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
+    m_masterSlideMotor = new CANSparkMax(MASTER_INTAKE_SLIDE_MOTOR_ID, MotorType.kBrushless);
+    m_followerSlideMotor = new CANSparkMax(FOLLOWER_INTAKE_SLIDE_MOTOR_ID, MotorType.kBrushless);
+
+    m_topShooterMotor = new CANSparkMax(TOP_SHOOTER_MOTOR_ID, MotorType.kBrushless);
+    m_bottomShooterMotor = new CANSparkMax(BOTTOM_SHOOTER_MOTOR_ID, MotorType.kBrushless);
+
+    m_topIntakeMotor = new CANSparkMax(TOP_INTAKE_MOTOR_ID, MotorType.kBrushless);
+    m_bottomIntakeMotor = new CANSparkMax(BOTTOM_INTAKE_MOTOR_ID, MotorType.kBrushless);
+
+    m_masterSlideMotor.restoreFactoryDefaults();
+    m_followerSlideMotor.restoreFactoryDefaults();
+    m_masterSlideMotor.setInverted(false);
+    m_followerSlideMotor.setInverted(false);
+
+    m_followerSlideMotor.follow(m_masterSlideMotor);
+
+    m_masterSlideMotor.setSmartCurrentLimit(10, 10);
+    m_masterSlideMotor.setIdleMode(IdleMode.kBrake);
+
+
+    m_topShooterMotor.restoreFactoryDefaults();
+    m_bottomShooterMotor.restoreFactoryDefaults();
+    m_topShooterMotor.setInverted(false);
+    m_bottomShooterMotor.setInverted(false);
+
+    m_topShooterMotor.setSmartCurrentLimit(10, 10);
+    m_bottomIntakeMotor.setSmartCurrentLimit(10, 10);
+    m_topShooterMotor.setIdleMode(IdleMode.kCoast);
+    m_bottomShooterMotor.setIdleMode(IdleMode.kCoast);
+    m_topShooterMotor.setOpenLoopRampRate(0.25);
+    m_bottomShooterMotor.setOpenLoopRampRate(0.25);
+
+    
+    m_topIntakeMotor.restoreFactoryDefaults();
+    m_bottomIntakeMotor.restoreFactoryDefaults();
+    m_topIntakeMotor.setInverted(false);
+    m_bottomIntakeMotor.setInverted(false);
+
+    m_topIntakeMotor.setSmartCurrentLimit(10, 10);
+    m_bottomIntakeMotor.setSmartCurrentLimit(10, 10);
+    m_topIntakeMotor.setIdleMode(IdleMode.kCoast);
+    m_bottomIntakeMotor.setIdleMode(IdleMode.kCoast);
+    m_topIntakeMotor.setOpenLoopRampRate(0.25);
+    m_bottomIntakeMotor.setOpenLoopRampRate(0.25);
 
     /**
      * The RestoreFactoryDefaults method can be used to reset the configuration parameters
      * in the SPARK MAX to their factory default state. If no argument is passed, these
      * parameters will not persist between power cycles
      */
-    m_motor.restoreFactoryDefaults();
 
     // initialze PID controller and encoder objects
     m_pidController = m_motor.getPIDController();
@@ -83,7 +142,7 @@ public class Robot extends TimedRobot {
     maxRPM = 5700;
 
     // Smart Motion Coefficients
-    maxVel = 2000; // rpm
+    maxVel = 2000; // RPM
     maxAcc = 1500;
 
     // set PID coefficients
@@ -131,6 +190,39 @@ public class Robot extends TimedRobot {
 
     // button to toggle between velocity and smart motion modes
     SmartDashboard.putBoolean("Mode", true);
+
+    topShooterLowPO = 0;
+    topShooterMidPO = 0;
+    topShooterHighPO = 0;
+    topShooterFarPO = 0;
+    bottomShooterLowPO = 0;
+    bottomShooterMidPO = 0;
+    bottomShooterHighPO = 0;
+    bottomShooterFarPO = 0;
+
+    SmartDashboard.putNumber("Top Shooter Low PO", topShooterLowPO);
+    SmartDashboard.putNumber("Bottom Shooter Low PO", bottomShooterLowPO);
+    SmartDashboard.putNumber("Top Shooter Mid PO", topShooterMidPO);
+    SmartDashboard.putNumber("Bottom Shooter Mid PO", bottomShooterMidPO);
+    SmartDashboard.putNumber("Top Shooter High PO", topShooterHighPO);
+    SmartDashboard.putNumber("Bottom Shooter High PO", bottomShooterHighPO);
+    SmartDashboard.putNumber("Top Shooter Far PO", topShooterLFaPO);
+    SmartDashboard.putNumber("Bottom Shooter Far PO", bottomShooterFarPO);
+    
+    topIntakePickupPO = 0;
+    bottomIntakePickupPO = 0;
+    topIntakeEjectPO = 0;
+    bottomIntakeEjectPO = 0;
+    topIntakeIndexPO = 0;
+    bottomIntakeIndexPO = 0;
+
+    SmartDashboard.putNumber("Top Intake Pickup PO", topIntakePickupPO);
+    SmartDashboard.putNumber("Bottom Intake Pickup PO", bottomIntakePickupPO);
+    SmartDashboard.putNumber("Top Intake Eject PO", topIntakeEjectPO);
+    SmartDashboard.putNumber("Bottom Intake Eject PO", bottomIntakeEjectPO);
+    SmartDashboard.putNumber("Top Intake Index PO", topIntakeIndexPO);
+    SmartDashboard.putNumber("Bottom Intake Index PO", bottomIntakeIndexPO);
+    
   }
 
   @Override
@@ -163,6 +255,31 @@ public class Robot extends TimedRobot {
     if((maxA != maxAcc)) { m_pidController.setSmartMotionMaxAccel(maxA,0); maxAcc = maxA; }
     if((allE != allowedErr)) { m_pidController.setSmartMotionAllowedClosedLoopError(allE,0); allowedErr = allE; }
 
+    double topLow = SmartDashboard.getNumber("Top Shooter Low PO");
+    double bottomLow = SmartDashboard.getNumber("Bottom Shooter Low PO");
+    double topMid = SmartDashboard.getNumber("Top Shooter Mid PO");
+    double bottomMid = SmartDashboard.getNumber("Bottom Shooter Mid PO");
+    double topHigh = SmartDashboard.getNumber("Top Shooter High PO");
+    double bottomHigh = SmartDashboard.getNumber("Bottom Shooter High PO");
+    double topFar = SmartDashboard.getNumber("Top Shooter Far PO");
+    double bottomFar = SmartDashboard.getNumber("Bottom Shooter Far PO");
+
+    topShooterLowPO = topLow;
+    bottomShooterLowPO = bottomLow;
+    topShooterMidPO = topMid;
+    bottomShooterMidPO = bottomMid;
+    topShooterHighPO = topHigh;
+    bottomShooterHighPO = bottomHigh;
+    topShooterFarPO = topFar;
+    bottomShooterFarPO = bottomFar;
+
+    double topPickup = SmartDashboard.getNumber("Top Intake Pickup PO");
+    double bottomPickup = SmartDashboard.getNumber("Bottom Intake Pickup PO");
+    double topEject = SmartDashboard.getNumber("Top Intake Eject PO");
+    double bottomEject = SmartDashboard.getNumber("Bottom Intake Eject PO");
+    double topIndex = SmartDashboard.getNumber("Top Intake Index PO");
+    double bottomIndex = SmartDashboard.getNumber("Bottom Intake Index PO");
+
     double setPoint, processVariable;
     boolean mode = SmartDashboard.getBoolean("Mode", false);
     if(mode) {
@@ -183,5 +300,57 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("SetPoint", setPoint);
     SmartDashboard.putNumber("Process Variable", processVariable);
     SmartDashboard.putNumber("Output", m_motor.getAppliedOutput());
+  }
+
+  @Override
+  public void testPeriodic() {
+    m_masterSlideMotor.set(deadband(controller.getLeftY(), 0.1) * 0.25);
+    if (controller.getBackButtonPressed()) {
+      m_encoder.setPosition(0);
+    }
+
+    if (controller.getAButtonPressed()) {
+      m_topShooterMotor.set(topShooterLowPO);
+      m_bottomShooterMotor.set(bottomShooterLowPO);
+    } else if (controller.getXButtonPressed()) {
+      m_topShooterMotor.set(topShooterMidPO);
+      m_bottomShooterMotor.set(bottomShooterMidPO);
+    } else if (controller.getYButtonPressed()) {
+      m_topShooterMotor.set(topShooterHighPO);
+      m_bottomShooterMotor.set(bottomShooterHighPO);
+    } else if (controller.getBButtonPressed()) {
+      m_topShooterMotor.set(topShooterFarPO);
+      m_bottomShooterMotor.set(bottomShooterFarPO);
+    } else {
+      m_topShooterMotor.set(0.0);
+      m_bottomShooterMotor.set(0.0);
+    }
+
+    if (controller.getRightTriggerAxis() > 0.5) {
+      m_topIntakeMotor.set(topIntakePickupPO);
+      m_bottomIntakeMotor.set(bottomIntakePickupPO);
+    } else if (controller.getLeftTriggerAxis() > 0.5) {
+      m_topIntakeMotor.set(topIntakeEjectPO);
+      m_bottomIntakeMotor.set(bottomIntakeEjectPO);
+    } else if (controller.getRightBumper()) {
+      m_topIntakeMotor.set(topIntakeIndexPO);
+      m_bottomIntakeMotor.set(bottomIntakeIndexPO);
+    } else {
+      m_topIntakeMotor.set(0.0);
+      m_bottomIntakeMotor.set(0.0);
+    }
+
+  }
+
+  public static double deadband(double value, double deadband) {
+    if (Math.abs(value) > deadband) {
+      if (value > 0.0) {
+        return (value - deadband) / (1.0 - deadband);
+      } else {
+        return (value + deadband) / (1.0 - deadband);
+      }
+    } else {
+      return 0.0;
+    }
   }
 }
