@@ -10,11 +10,7 @@ import org.littletonrobotics.junction.LoggedRobot;
 
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
-import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
-import com.team2357.frc2023.subsystems.IntakeSubsystem;
-import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
-import com.team2357.lib.subsystems.DualLimelightManagerSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,10 +28,6 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
-  public static ShooterSubsystem shooter;
-  public static IntakeSlideSubsystem slide;
-  // public static IntakeSubsystem intake;
-  // public static DualLimelightManagerSubsystem limelights;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -49,12 +41,6 @@ public class Robot extends LoggedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
-    shooter = new ShooterSubsystem();
-    slide = new IntakeSlideSubsystem();
-    // intake = new IntakeSubsystem();
-
-    // driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    // operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
 
     m_robotContainer = new RobotContainer();
   }
@@ -78,7 +64,10 @@ public class Robot extends LoggedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    shooter.stopShooter();
+    // Wait 5 seconds then set the drive motors to coast (to allow the robot to be pushed)
+    long disabledStart = System.currentTimeMillis();
+    while (System.currentTimeMillis() - disabledStart != Constants.SWERVE.DISABLED_WAIT_TO_BREAK_MILLIS);
+    drive.setBrakeMode(false);
   }
 
   @Override

@@ -2,11 +2,11 @@ package com.team2357.frc2023.subsystems;
 
 import java.io.File;
 
-import com.swervelib.SwerveDrive;
-import com.swervelib.SwerveModule;
-import com.swervelib.parser.SwerveParser;
-import com.swervelib.telemetry.SwerveDriveTelemetry;
-import com.swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+import swervelib.SwerveDrive;
+import swervelib.SwerveModule;
+import swervelib.parser.SwerveParser;
+import swervelib.telemetry.SwerveDriveTelemetry;
+import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 import com.team2357.frc2023.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -95,29 +95,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     public void updatePoseEstimator() {
-
-        // LimelightSubsystem leftLL = Robot.limelights.getLimelight(LIMELIGHT.LEFT);
-        // LimelightSubsystem rightLL = Robot.limelights.getLimelight(LIMELIGHT.RIGHT);
-
-        // Pose2d leftPose = leftLL.getCurrentAllianceLimelightPose();
-        // Pose2d rightPose = rightLL.getCurrentAllianceLimelightPose();
-
-        // double leftTime = leftLL.getCurrentAllianceBotposeTimestamp();
-        // double rightTime = rightLL.getCurrentAllianceBotposeTimestamp();
-
-        // if (leftPose != null) {
-        // m_swerve.addVisionMeasurement(leftPose, leftTime, false, null);
-        // }
-
-        // if (rightPose != null) {
-        // m_swerve.addVisionMeasurement(rightPose, rightTime, false, null);
-        // }
-
         m_swerve.updateOdometry();
-        // m_poseEstimator.update(getGyroscopeRotation(),
-        // new SwerveModulePosition[] { m_frontLeftModule.getPosition(),
-        // m_frontRightModule.getPosition(),
-        // m_backLeftModule.getPosition(), m_backRightModule.getPosition() });
     }
 
 }

@@ -111,6 +111,8 @@ public final class Constants {
 
         public static final double MAX_VELOCITY_METERS_PER_SECOND = 14.5;
         public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 4;
+
+        public static final double DISABLED_WAIT_TO_BREAK_MILLIS = 5000;
     }
 
     public static final class CONTROLLER {

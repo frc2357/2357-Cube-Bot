@@ -19,16 +19,10 @@ public class SwerveDriveControls implements RumbleInterface {
 
     private JoystickButton m_backButton;
 
-    private AxisThresholdTrigger m_rightTrigger;
-    private AxisThresholdTrigger m_leftTrigger;
-
     public SwerveDriveControls(int portNumber, double deadband) {
         m_controller = new XboxController(portNumber);
         m_deadband = deadband;
         
-        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, 0.0);
-        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, 0.0);
-
         m_backButton = new JoystickButton(m_controller, XboxRaw.Back.value);
         
         mapControls();
@@ -38,8 +32,6 @@ public class SwerveDriveControls implements RumbleInterface {
         m_backButton.onTrue(new InstantCommand(() -> {
             Robot.drive.zeroGyro();
         }));
-        // m_rightTrigger.whileTrue(new IntakePickupCubeCommand());
-        // m_leftTrigger.whileTrue(new IntakeEjectCubeCommand());
     }
 
     public double getX() {
