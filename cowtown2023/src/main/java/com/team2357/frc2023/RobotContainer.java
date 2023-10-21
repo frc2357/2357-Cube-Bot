@@ -5,6 +5,7 @@
 package com.team2357.frc2023;
 
 import com.team2357.frc2023.commands.DefaultDriveCommand;
+import com.team2357.frc2023.commands.auto.ExampleAuto;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,6 +33,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    return new ExampleAuto();
   }
 }
