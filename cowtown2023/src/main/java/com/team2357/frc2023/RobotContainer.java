@@ -4,16 +4,26 @@
 
 package com.team2357.frc2023;
 
+import com.team2357.frc2023.commands.DefaultDriveCommand;
+import com.team2357.frc2023.controls.SwerveDriveControls;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
   public RobotContainer() {
+
+    SwerveDriveControls driveControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
+    Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, driveControls));
+
   }
 
   /**

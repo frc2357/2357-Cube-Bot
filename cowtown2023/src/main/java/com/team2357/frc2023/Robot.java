@@ -4,6 +4,9 @@
 
 package com.team2357.frc2023;
 
+import java.io.File;
+import java.util.TimerTask;
+
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -11,13 +14,12 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
+import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
-import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
-import com.team2357.frc2023.subsystems.IntakeSubsystem;
-import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,13 +33,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends LoggedRobot {
   private Command m_autonomousCommand;
+  private Command m_setCoastCommand;
 
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
-  public static ShooterSubsystem shooter;
-  public static IntakeSlideSubsystem slide;
-  public static IntakeSubsystem intake;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -54,15 +54,11 @@ public class Robot extends LoggedRobot {
     Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    drive = new SwerveDriveSubsystem();
-    shooter = new ShooterSubsystem();
-    slide = new IntakeSlideSubsystem();
-    intake = new IntakeSubsystem();
-
-    driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
+    drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
 
     m_robotContainer = new RobotContainer();
+
+    m_setCoastCommand = new SetCoastOnDisableCommand();
   }
 
   /**
@@ -84,7 +80,8 @@ public class Robot extends LoggedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    shooter.stopShooter();
+    // Wait 5 seconds then set the drive motors to coast (to allow the robot to be pushed)
+    m_setCoastCommand.schedule();
   }
 
   @Override
