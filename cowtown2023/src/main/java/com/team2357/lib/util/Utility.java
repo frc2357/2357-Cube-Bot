@@ -58,4 +58,8 @@ public class Utility {
     }
     return input;
   }
+
+  public static boolean isWithinTolerance(double currentValue, double targetValue, double tolerance) {
+    return Math.abs(currentValue - targetValue) <= tolerance;
+  }
 }
