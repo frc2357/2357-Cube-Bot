@@ -255,31 +255,6 @@ public class Robot extends TimedRobot {
     if((maxA != maxAcc)) { m_pidController.setSmartMotionMaxAccel(maxA,0); maxAcc = maxA; }
     if((allE != allowedErr)) { m_pidController.setSmartMotionAllowedClosedLoopError(allE,0); allowedErr = allE; }
 
-    double topLow = SmartDashboard.getNumber("Top Shooter Low PO");
-    double bottomLow = SmartDashboard.getNumber("Bottom Shooter Low PO");
-    double topMid = SmartDashboard.getNumber("Top Shooter Mid PO");
-    double bottomMid = SmartDashboard.getNumber("Bottom Shooter Mid PO");
-    double topHigh = SmartDashboard.getNumber("Top Shooter High PO");
-    double bottomHigh = SmartDashboard.getNumber("Bottom Shooter High PO");
-    double topFar = SmartDashboard.getNumber("Top Shooter Far PO");
-    double bottomFar = SmartDashboard.getNumber("Bottom Shooter Far PO");
-
-    topShooterLowPO = topLow;
-    bottomShooterLowPO = bottomLow;
-    topShooterMidPO = topMid;
-    bottomShooterMidPO = bottomMid;
-    topShooterHighPO = topHigh;
-    bottomShooterHighPO = bottomHigh;
-    topShooterFarPO = topFar;
-    bottomShooterFarPO = bottomFar;
-
-    double topPickup = SmartDashboard.getNumber("Top Intake Pickup PO");
-    double bottomPickup = SmartDashboard.getNumber("Bottom Intake Pickup PO");
-    double topEject = SmartDashboard.getNumber("Top Intake Eject PO");
-    double bottomEject = SmartDashboard.getNumber("Bottom Intake Eject PO");
-    double topIndex = SmartDashboard.getNumber("Top Intake Index PO");
-    double bottomIndex = SmartDashboard.getNumber("Bottom Intake Index PO");
-
     double setPoint, processVariable;
     boolean mode = SmartDashboard.getBoolean("Mode", false);
     if(mode) {
@@ -340,6 +315,28 @@ public class Robot extends TimedRobot {
       m_bottomIntakeMotor.set(0.0);
     }
 
+    updateShooterValues();
+    updateIntakeRollerValues();
+  }
+
+  public void updateShooterValues() {
+    topShooterLowPO = SmartDashboard.getNumber("Top Shooter Low PO");
+    bottomShooterLowPO = SmartDashboard.getNumber("Bottom Shooter Low PO");
+    topShooterMidPO = SmartDashboard.getNumber("Top Shooter Mid PO");
+    bottomShooterMidPO = SmartDashboard.getNumber("Bottom Shooter Mid PO");
+    topShooterHighPO = SmartDashboard.getNumber("Top Shooter High PO");
+    bottomShooterHighPO = SmartDashboard.getNumber("Bottom Shooter High PO");
+    topShooterFarPO = SmartDashboard.getNumber("Top Shooter Far PO");
+    bottomShooterFarPO = SmartDashboard.getNumber("Bottom Shooter Far PO");
+  }
+
+  public void updateIntakeRollerValues() {
+    topIntakePickupPO = SmartDashboard.getNumber("Top Intake Pickup PO");
+    bottomIntakePickupPO = SmartDashboard.getNumber("Bottom Intake Pickup PO");
+    topIntakeEjectPO = SmartDashboard.getNumber("Top Intake Eject PO");
+    bottomIntakeEjectPO = SmartDashboard.getNumber("Bottom Intake Eject PO");
+    topIntakeIndexPO = SmartDashboard.getNumber("Top Intake Index PO");
+    bottomIntakeIndexPO = SmartDashboard.getNumber("Bottom Intake Index PO");
   }
 
   public static double deadband(double value, double deadband) {
