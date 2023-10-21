@@ -86,6 +86,8 @@ public class Pigeon2Swerve extends SwerveIMU
   {
     double[] wxyz = new double[4];
     imu.get6dQuaternion(wxyz);
+    // System.out.println(imu.getYaw());
+    // System.out.println(imu.getLastError());
     return new Rotation3d(new Quaternion(wxyz[0], wxyz[1], wxyz[2], wxyz[3]));
   }
 

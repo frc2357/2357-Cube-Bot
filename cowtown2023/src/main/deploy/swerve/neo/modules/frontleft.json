@@ -16,11 +16,11 @@
   },
   "inverted": {
     "drive": true,
-    "angle": true
+    "angle": false
   },
   "absoluteEncoderOffset": 0.0,
   "location": {
     "front": 12,
-    "left": 12
+    "left": -12
   }
 }

@@ -6,6 +6,8 @@ package com.team2357.frc2023;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.math.util.Units;
+
 public final class Constants {
     public static final class CAN_ID {
         public static final int PIGEON_ID = 5;
@@ -35,10 +37,10 @@ public final class Constants {
 
         public static final double TOP_MOTOR_HIGH_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_HIGH_PERCENT_OUTPUT = 0.0;
-        
+
         public static final double TOP_MOTOR_MID_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_MID_PERCENT_OUTPUT = 0.0;
-        
+
         public static final double TOP_MOTOR_LOW_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_LOW_PERCENT_OUTPUT = 0.0;
 
@@ -62,10 +64,10 @@ public final class Constants {
 
         public static final double TOP_MOTOR_INTAKE_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_INTAKE_PERCENT_OUTPUT = 0.0;
-        
+
         public static final double TOP_MOTOR_EJECT_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_EJECT_PERCENT_OUTPUT = 0.0;
-        
+
         public static final double TOP_MOTOR_INDEX_PERCENT_OUTPUT = 0.0;
         public static final double BOTTOM_MOTOR_INDEX_PERCENT_OUTPUT = 0.0;
 
@@ -102,7 +104,13 @@ public final class Constants {
     }
 
     public static final class SWERVE {
-        // public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 
+        public static final double TRACKWIDTH_METERS = Units.inchesToMeters(18.75);
+        public static final double WHEELBASE_METERS = Units.inchesToMeters(18.75);
+
+        public static final double ABSOLUTE_ENCODER_CONVERSION_FACTOR = 360;
+
+        public static final double MAX_VELOCITY_METERS_PER_SECOND = 14.5;
+        public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 4;
     }
 
     public static final class CONTROLLER {

@@ -1,6 +1,7 @@
 package com.team2357.frc2023.commands;
 
 import com.swervelib.SwerveController;
+import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.state.RobotState;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
@@ -27,7 +28,7 @@ public class DefaultDriveCommand extends CommandBase {
         ChassisSpeeds targetSpeeds = m_swerve.getTargetSpeeds(m_controls.getX(), m_controls.getY(),
                 new Rotation2d(m_controls.getRotation() * Math.PI));
 
-        m_swerve.drive(SwerveController.getTranslation2d(targetSpeeds), targetSpeeds.omegaRadiansPerSecond, true, false);
+        m_swerve.drive(SwerveController.getTranslation2d(targetSpeeds), m_controls.getRotation() * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, true, false);
     }
 
     @Override

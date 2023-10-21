@@ -2,6 +2,13 @@ package com.team2357.frc2023.subsystems;
 
 import java.io.File;
 
+import com.swervelib.SwerveDrive;
+import com.swervelib.SwerveModule;
+import com.swervelib.parser.SwerveParser;
+import com.swervelib.telemetry.SwerveDriveTelemetry;
+import com.swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+import com.team2357.frc2023.Constants;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -10,10 +17,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.swervelib.SwerveDrive;
-import com.swervelib.parser.SwerveParser;
-import com.swervelib.telemetry.SwerveDriveTelemetry;
-import com.swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 public class SwerveDriveSubsystem extends SubsystemBase {
 
@@ -23,13 +26,18 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
         try {
             m_swerve = new SwerveParser(directory).createSwerveDrive();
+
+            SwerveModule[] modules = m_swerve.getModules();
+            for (SwerveModule module : modules) {
+                module.getAngleMotor().configureIntegratedEncoder(Constants.SWERVE.ABSOLUTE_ENCODER_CONVERSION_FACTOR);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
-        m_swerve.drive(translation, rotation, fieldRelative, isOpenLoop);
+        m_swerve.drive(translation.rotateBy(Rotation2d.fromDegrees(-90)), rotation, fieldRelative, isOpenLoop);
     }
 
     public ChassisSpeeds getTargetSpeeds(double x, double y, Rotation2d rotation) {
@@ -40,7 +48,6 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-
     }
 
     public void setBrakeMode(boolean brake) {
