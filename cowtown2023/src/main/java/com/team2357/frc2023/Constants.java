@@ -26,6 +26,20 @@ public final class Constants {
         public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
     }
 
+    public static final class SHOOTER {
+        public static final double TOP_MOTOR_LOW_PERCENT_OUTPUT = 0;
+        public static final double BOTTOM_MOTOR_LOW_PERCENT_OUTPUT = 0;
+
+        public static final double TOP_MOTOR_MID_PERCENT_OUTPUT = 0;
+        public static final double BOTTOM_MOTOR_MID_PERCENT_OUTPUT = 0;
+
+        public static final double TOP_MOTOR_HIGH_PERCENT_OUTPUT = 0;
+        public static final double BOTTOM_MOTOR_HIGH_PERCENT_OUTPUT = 0;
+
+        public static final double TOP_MOTOR_FAR_PERCENT_OUTPUT = 0;
+        public static final double BOTTOM_MOTOR_FAR_PERCENT_OUTPUT = 0;
+    }
+
     public static final class SWERVE {
         public static final double TRACKWIDTH_METERS = Units.inchesToMeters(18.75);
         public static final double WHEELBASE_METERS = Units.inchesToMeters(18.75);
