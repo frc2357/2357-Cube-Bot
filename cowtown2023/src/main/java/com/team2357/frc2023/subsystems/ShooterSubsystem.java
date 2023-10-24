@@ -26,7 +26,15 @@ public class ShooterSubsystem extends SubsystemBase {
         m_bottomShooterMotor.setInverted(Constants.SHOOTER.BOTTOM_MOTOR_INVERTED);
 
         m_topShooterMotor.enableVoltageCompensation(12);
+        m_topShooterMotor.setIdleMode(Constants.SHOOTER.MOTOR_IDLE_MODE);
+        m_topShooterMotor.setSmartCurrentLimit(Constants.SHOOTER.TOP_MOTOR_STALL_LIMIT_AMPS,
+                Constants.SHOOTER.TOP_MOTOR_FREE_LIMIT_AMPS);
+
         m_bottomShooterMotor.enableVoltageCompensation(12);
+        m_bottomShooterMotor.setIdleMode(Constants.SHOOTER.MOTOR_IDLE_MODE);
+        m_bottomShooterMotor.setSmartCurrentLimit(Constants.SHOOTER.BOTTOM_MOTOR_STALL_LIMIT_AMPS,
+                Constants.SHOOTER.BOTTOM_MOTOR_FREE_LIMIT_AMPS);
+
 
         m_topPIDController = m_topShooterMotor.getPIDController();
         m_bottomPIDController = m_bottomShooterMotor.getPIDController();

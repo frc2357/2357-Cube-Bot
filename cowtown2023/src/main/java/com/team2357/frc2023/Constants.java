@@ -4,6 +4,8 @@
 
 package com.team2357.frc2023;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -29,6 +31,15 @@ public final class Constants {
     public static final class SHOOTER {
         public static final boolean TOP_MOTOR_INVERTED = false;
         public static final boolean BOTTOM_MOTOR_INVERTED = false;
+
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 20;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 20;
+
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 20;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 20;
+
+        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
+
 
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
