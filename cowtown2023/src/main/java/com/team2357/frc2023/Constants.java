@@ -75,18 +75,28 @@ public final class Constants {
 
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
 
-        // Motor speeds
-        public static final double TOP_MOTOR_INTAKE_PERCENT_OUTPUT = +0.5;
-        public static final double BOTTOM_MOTOR_INTAKE_PERCENT_OUTPUT = +0.75;
-        
-        public static final double TOP_MOTOR_EJECT_PERCENT_OUTPUT = -0.5;
-        public static final double BOTTOM_MOTOR_EJECT_PERCENT_OUTPUT = +0.35;
-        
-        public static final double TOP_MOTOR_INDEX_PERCENT_OUTPUT = +0.5;
-        public static final double BOTTOM_MOTOR_INDEX_PERCENT_OUTPUT = -0.35;
+        public static final double TOP_MOTOR_P = 0.0;
+        public static final double TOP_MOTOR_I = 0.0;
+        public static final double TOP_MOTOR_D = 0.0;
+        public static final double TOP_MOTOR_FF = 0.0;
 
-        public static final double TOP_MOTOR_ROLL_PERCENT_OUTPUT = +0.5;
-        public static final double BOTTOM_MOTOR_ROLL_PERCENT_OUTPUT = +0.35;
+        public static final double BOTTOM_MOTOR_P = 0.0;
+        public static final double BOTTOM_MOTOR_I = 0.0;
+        public static final double BOTTOM_MOTOR_D = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.0;
+
+        // Motor speeds
+        public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +0.75;
+        
+        public static final double TOP_MOTOR_EJECT_RPMS = -0.5;
+        public static final double BOTTOM_MOTOR_EJECT_RPMS = +0.35;
+        
+        public static final double TOP_MOTOR_INDEX_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INDEX_RPMS = -0.35;
+
+        public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
 
     }
 
