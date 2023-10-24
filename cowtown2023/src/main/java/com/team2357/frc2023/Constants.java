@@ -4,8 +4,6 @@
 
 package com.team2357.frc2023;
 
-import com.revrobotics.CANSparkMax.IdleMode;
-
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -23,6 +21,9 @@ public final class Constants {
 
         public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR_ID = 17;
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR_ID = 18;
+
+        public static final int TOP_SHOOTER_MOTOR_ID = 23;
+        public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
     }
 
     public static final class SWERVE {

@@ -17,6 +17,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
+import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
@@ -38,6 +39,7 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
+  public static ShooterSubsystem shooter;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -54,7 +56,9 @@ public class Robot extends LoggedRobot {
     Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
+    shooter = new ShooterSubsystem();
 
     m_robotContainer = new RobotContainer();
 
