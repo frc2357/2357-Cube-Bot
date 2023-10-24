@@ -27,17 +27,30 @@ public final class Constants {
     }
 
     public static final class SHOOTER {
-        public static final double TOP_MOTOR_LOW_PERCENT_OUTPUT = 0;
-        public static final double BOTTOM_MOTOR_LOW_PERCENT_OUTPUT = 0;
+        public static final boolean TOP_MOTOR_INVERTED = false;
+        public static final boolean BOTTOM_MOTOR_INVERTED = false;
 
-        public static final double TOP_MOTOR_MID_PERCENT_OUTPUT = 0;
-        public static final double BOTTOM_MOTOR_MID_PERCENT_OUTPUT = 0;
+        public static final double TOP_MOTOR_P = 0.0;
+        public static final double TOP_MOTOR_I = 0.0;
+        public static final double TOP_MOTOR_D = 0.0;
+        public static final double TOP_MOTOR_FF = 0.0;
 
-        public static final double TOP_MOTOR_HIGH_PERCENT_OUTPUT = 0;
-        public static final double BOTTOM_MOTOR_HIGH_PERCENT_OUTPUT = 0;
+        public static final double BOTTOM_MOTOR_P = 0.0;
+        public static final double BOTTOM_MOTOR_I = 0.0;
+        public static final double BOTTOM_MOTOR_D = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.0;
 
-        public static final double TOP_MOTOR_FAR_PERCENT_OUTPUT = 0;
-        public static final double BOTTOM_MOTOR_FAR_PERCENT_OUTPUT = 0;
+        public static final double TOP_MOTOR_LOW_RPMS = 0;
+        public static final double BOTTOM_MOTOR_LOW_RPMS = 0;
+
+        public static final double TOP_MOTOR_MID_RPMS = 0;
+        public static final double BOTTOM_MOTOR_MID_RPMS = 0;
+
+        public static final double TOP_MOTOR_HIGH_RPMS = 0;
+        public static final double BOTTOM_MOTOR_HIGH_RPMS = 0;
+
+        public static final double TOP_MOTOR_FAR_RPMS = 0;
+        public static final double BOTTOM_MOTOR_FAR_RPMS = 0;
     }
 
     public static final class SWERVE {
