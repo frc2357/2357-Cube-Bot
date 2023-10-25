@@ -52,23 +52,32 @@ public class IntakeRollerSubsystem extends SubsystemBase {
     }
 
     public void eject() {
-        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
+        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
+        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
     }
 
     public void intake() {
-        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
+        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
+        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
     }
 
     public void index() {
-        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
+        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
+        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
     }
 
     public void roll() {
-        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
+        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
+        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
     }
 
     public void stop() {
         runIntake(0.0, 0.0);
+    }
+
+    public void setPercentOutput(double topPO, double bottomPO) {
+        m_topIntakeMotor.set(topPO);
+        m_bottomIntakeMotor.set(bottomPO);
     }
 
     public void setRPMs(double topRPMs, double bottomRPMs) {
