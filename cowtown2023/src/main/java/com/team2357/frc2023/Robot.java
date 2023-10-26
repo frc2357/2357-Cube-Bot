@@ -11,8 +11,6 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
-import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
-import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -32,8 +30,6 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
-  public static ShooterSubsystem shooter;
-  public static IntakeSlideSubsystem slide;
   public static IntakeRollerSubsystem intake;
 
   public static SwerveDriveControls driverControls;
@@ -52,8 +48,6 @@ public class Robot extends LoggedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem();
-    shooter = new ShooterSubsystem();
-    slide = new IntakeSlideSubsystem();
     intake = new IntakeRollerSubsystem();
 
     driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
@@ -81,7 +75,6 @@ public class Robot extends LoggedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    shooter.stopShooter();
   }
 
   @Override
