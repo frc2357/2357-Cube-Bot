@@ -20,6 +20,7 @@ public class IntakeRollerSubsystem extends SubsystemBase {
     public IntakeRollerSubsystem() {
         m_topIntakeMotor = new CANSparkMax(Constants.CAN_ID.TOP_INTAKE_ROLLER_MOTOR_ID, MotorType.kBrushless);
         m_bottomIntakeMotor = new CANSparkMax(Constants.CAN_ID.BOTTOM_INTAKE_ROLLER_MOTOR_ID, MotorType.kBrushless);
+        configure();
     }
 
     public void configure() {
