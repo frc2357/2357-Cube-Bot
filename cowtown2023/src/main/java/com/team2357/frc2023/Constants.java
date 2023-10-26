@@ -42,6 +42,8 @@ public final class Constants {
         public static final double SLIDE_EXTENDED_ROTATIONS = 0;
         public static final double SLIDE_RETRACTED_ROTATIONS = 0;
 
+        public static final double MAX_AMPS = 20;
+
         // PID
         public static final double SLIDE_P = 0;
         public static final double SLIDE_I = 0;

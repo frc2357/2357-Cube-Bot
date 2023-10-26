@@ -119,6 +119,10 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
         setSlideRotations(Constants.INTAKE_SLIDE.SLIDE_RETRACTED_ROTATIONS);
     }
 
+    public boolean isAtMaxAmps() {
+        return m_masterSlideMotor.getOutputCurrent() >= Constants.INTAKE_SLIDE.MAX_AMPS;
+    }
+
     @Override
     public void periodic() {
         if (m_currentState != m_desiredState) {
@@ -134,7 +138,7 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
             }
         }
 
-        if (isClosedLoopEnabled() && isSlideAtRotations()) {
+        if (isClosedLoopEnabled() && isSlideAtRotations() || isAtMaxAmps()) {
             setClosedLoopEnabled(false);
         }
     }
