@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class IntakeRollerPickupCubeCommand extends CommandBase {
 
     public IntakeRollerPickupCubeCommand() {
-        addRequirements(Robot.intake);
+        addRequirements(Robot.intakeRoller);
     }
 
     @Override
     public void execute() {
-        Robot.intake.intake();
+        Robot.intakeRoller.intake();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class IntakeRollerPickupCubeCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.intake.stop();
+        Robot.intakeRoller.stop();
     }
     
 }

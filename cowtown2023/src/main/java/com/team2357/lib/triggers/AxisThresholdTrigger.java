@@ -4,7 +4,6 @@ import com.team2357.lib.util.ControllerAxis;
 import com.team2357.lib.util.XboxRaw;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class AxisThresholdTrigger extends Trigger {
@@ -14,22 +13,22 @@ public class AxisThresholdTrigger extends Trigger {
 
   public AxisThresholdTrigger(
       XboxController controller,
-      int value,
+      XboxRaw triggerright,
       double triggerThreshold) {
     this.triggerThreshold = triggerThreshold;
     this.controllerAxis = () -> {
-      switch (value) {
-        case kLeftX:
+      switch (triggerright) {
+        case StickLeftX:
           return controller.getLeftX();
-        case kLeftY:
+        case StickLeftY:
           return controller.getLeftY();
-        case kLeftTrigger:
+        case TriggerLeft:
           return controller.getLeftTriggerAxis();
-        case kRightTrigger:
+        case TriggerRight:
           return controller.getRightTriggerAxis();
-        case kRightX:
+        case StickRightX:
           return controller.getRightX();
-        case kRightY:
+        case StickRightY:
           return controller.getRightY();
       }
       return 0;

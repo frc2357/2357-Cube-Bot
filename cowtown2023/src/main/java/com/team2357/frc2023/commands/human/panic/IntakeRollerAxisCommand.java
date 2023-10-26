@@ -12,11 +12,11 @@ public class IntakeRollerAxisCommand extends CommandBase {
     public IntakeRollerAxisCommand(AxisInterface topRollerAxis, AxisInterface bottomRollerAxis) {
         m_topRollerAxis = topRollerAxis;
         m_bottomRollerAxis = bottomRollerAxis;
-        addRequirements(Robot.intake);
+        addRequirements(Robot.intakeRoller);
     }
 
     @Override
     public void execute() {
-        Robot.intake.setAxisRollerSpeeds(m_topRollerAxis.getValue(), m_bottomRollerAxis.getValue());
+        Robot.intakeRoller.setAxisRollerSpeeds(m_topRollerAxis.getValue(), m_bottomRollerAxis.getValue());
     }
 }

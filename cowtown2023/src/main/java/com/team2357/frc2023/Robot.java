@@ -35,7 +35,7 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
-  public static IntakeRollerSubsystem intake;
+  public static IntakeRollerSubsystem intakeRoller;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -53,7 +53,7 @@ public class Robot extends LoggedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
-    intake = new IntakeRollerSubsystem();
+    intakeRoller = new IntakeRollerSubsystem();
 
     driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
     operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
