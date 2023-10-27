@@ -19,4 +19,9 @@ public class IntakeRollerAxisCommand extends CommandBase {
     public void execute() {
         Robot.intakeRoller.setAxisRollerSpeeds(m_topRollerAxis.getValue(), m_bottomRollerAxis.getValue());
     }
+
+    @Override
+    public void end(boolean interrupt) {
+        Robot.intakeRoller.stop();
+    }
 }

@@ -11,6 +11,7 @@ import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup.SHOOTER_RPMS;
 import com.team2357.lib.util.XboxRaw;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -19,8 +20,6 @@ public class SwerveDriveControls implements RumbleInterface {
 
     private XboxController m_controller;
     private double m_deadband;
-
-    public static boolean isFlipped;
 
     private JoystickButton m_aButton;
     private JoystickButton m_bButton;
@@ -47,8 +46,8 @@ public class SwerveDriveControls implements RumbleInterface {
 
         m_backButton = new JoystickButton(m_controller, XboxRaw.Back.value);
         
-        m_rightTrigger = new AxisThresholdTrigger(m_controller, XboxRaw.TriggerRight, 0.0);
-        m_leftTrigger = new AxisThresholdTrigger(m_controller, XboxRaw.TriggerLeft, 0.0);
+        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, 0.1);
+        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, 0.1);
         m_rightBumper = new JoystickButton(m_controller, XboxRaw.BumperRight.value);
         m_leftBumper = new JoystickButton(m_controller, XboxRaw.BumperLeft.value);
 

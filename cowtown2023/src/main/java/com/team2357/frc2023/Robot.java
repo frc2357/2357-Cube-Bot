@@ -59,9 +59,6 @@ public class Robot extends LoggedRobot {
 
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
     intakeRoller = new IntakeRollerSubsystem();
-
-    driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
 
