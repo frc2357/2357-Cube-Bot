@@ -2,11 +2,6 @@ package com.team2357.frc2023.subsystems;
 
 import java.io.File;
 
-import swervelib.SwerveDrive;
-import swervelib.SwerveModule;
-import swervelib.parser.SwerveParser;
-import swervelib.telemetry.SwerveDriveTelemetry;
-import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 import com.team2357.frc2023.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -17,13 +12,18 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import swervelib.SwerveDrive;
+import swervelib.SwerveModule;
+import swervelib.parser.SwerveParser;
+import swervelib.telemetry.SwerveDriveTelemetry;
+import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 public class SwerveDriveSubsystem extends SubsystemBase {
 
     private SwerveDrive m_swerve;
 
     public SwerveDriveSubsystem(File directory) {
-        SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
+        SwerveDriveTelemetry.verbosity = TelemetryVerbosity.LOW;
         try {
             m_swerve = new SwerveParser(directory).createSwerveDrive();
 

@@ -110,13 +110,17 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
     public void extend() {
         m_currentState = SlideState.Unknown;
         m_desiredState = SlideState.Extended;
-        setSlideRotations(Constants.INTAKE_SLIDE.SLIDE_EXTENDED_ROTATIONS);
+        setSlideRotations(Constants.INTAKE_SLIDE.SLIDE_PARTIAL_EXTEND_ROTATIONS);
     }
 
     public void retract() {
         m_currentState = SlideState.Unknown;
         m_desiredState = SlideState.Retracted;
-        setSlideRotations(Constants.INTAKE_SLIDE.SLIDE_RETRACTED_ROTATIONS);
+        setSlideRotations(Constants.INTAKE_SLIDE.SLIDE_PARTIAL_RETRACT_ROTATIONS);
+    }
+
+    public void zero() {
+        m_masterSlideMotor.getEncoder().setPosition(0);
     }
 
     public boolean isAtMaxAmps() {
@@ -155,6 +159,14 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
         } else {
             m_currentState = SlideState.Retracted;
         }
+    }
+
+    public double getMasterRPMs() {
+        return m_masterSlideMotor.getEncoder().getVelocity();
+    }
+
+    public double getFollowerRPMs() {
+        return m_followerSlideMotor.getEncoder().getVelocity();
     }
 
 }

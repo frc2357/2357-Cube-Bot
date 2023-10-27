@@ -50,26 +50,29 @@ public class IntakeRollerSubsystem extends SubsystemBase {
         m_bottomPIDController.setD(Constants.INTAKE_ROLLER.BOTTOM_MOTOR_D);
         m_bottomPIDController.setFF(Constants.INTAKE_ROLLER.BOTTOM_MOTOR_FF);
 
+        m_topPIDController.setOutputRange(-1, 1);
+        m_bottomPIDController.setOutputRange(-1, 1);
+
     }
 
     public void eject() {
-        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
-        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
+        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
+        // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_EJECT_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_EJECT_RPMS);
     }
 
     public void intake() {
-        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
-        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
+        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
+        // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INTAKE_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INTAKE_RPMS);
     }
 
     public void index() {
-        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
-        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
+        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
+        // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_INDEX_RPMS);
     }
 
     public void roll() {
-        // setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
-        setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
+        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
+        // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
     }
 
     public void stop() {

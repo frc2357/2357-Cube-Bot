@@ -1,27 +1,22 @@
 package com.team2357.frc2023.commands.intakeRoller;
 
 import com.team2357.frc2023.Robot;
+import com.team2357.frc2023.commands.IntakeStowCommandGroup;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class IntakeRollerPickupCubeCommand extends CommandBase {
-
-    public IntakeRollerPickupCubeCommand() {
+public class IntakeRollerStopMotorsCommand extends CommandBase {
+    public IntakeRollerStopMotorsCommand() {
         addRequirements(Robot.intakeRoller);
     }
 
     @Override
-    public void execute() {
-        Robot.intakeRoller.intake();
+    public void initialize() {
+        Robot.intakeRoller.stop();
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
-
-    @Override
-    public void end(boolean interrupted) {
-    }
-    
 }
