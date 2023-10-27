@@ -6,11 +6,12 @@ import com.team2357.frc2023.commands.intakeRoller.IntakeRollerIndexCubeCommand;
 import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
 import com.team2357.frc2023.commands.intakeRoller.IntakeRollerRollCubeCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
+import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup;
+import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup.SHOOTER_RPMS;
 import com.team2357.lib.util.XboxRaw;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -18,6 +19,13 @@ public class SwerveDriveControls implements RumbleInterface {
 
     private XboxController m_controller;
     private double m_deadband;
+
+    public static boolean isFlipped;
+
+    private JoystickButton m_aButton;
+    private JoystickButton m_bButton;
+    private JoystickButton m_xButton;
+    private JoystickButton m_yButton;
 
     private JoystickButton m_backButton;
 
@@ -32,6 +40,11 @@ public class SwerveDriveControls implements RumbleInterface {
         m_controller = new XboxController(portNumber);
         m_deadband = deadband;
         
+        m_aButton = new JoystickButton(m_controller, XboxRaw.A.value);
+        m_bButton = new JoystickButton(m_controller, XboxRaw.B.value);
+        m_xButton = new JoystickButton(m_controller, XboxRaw.X.value);
+        m_yButton = new JoystickButton(m_controller, XboxRaw.Y.value);
+
         m_backButton = new JoystickButton(m_controller, XboxRaw.Back.value);
         
         m_rightTrigger = new AxisThresholdTrigger(m_controller, XboxRaw.TriggerRight, 0.0);
@@ -43,6 +56,11 @@ public class SwerveDriveControls implements RumbleInterface {
     }
 
     private void mapControls() {
+        m_aButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.LOW));
+        m_xButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.MID));
+        m_yButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.HIGH));
+        m_bButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.FAR));
+
         m_backButton.onTrue(new InstantCommand(() -> {
             Robot.drive.zeroGyro();
         }));

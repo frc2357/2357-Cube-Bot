@@ -45,6 +45,22 @@ public final class Constants {
 
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
 
+        public static final int TOP_SHOOTER_MOTOR_ID = 23;
+        public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
+    }
+
+    public static final class SHOOTER {
+        public static final boolean TOP_MOTOR_INVERTED = false;
+        public static final boolean BOTTOM_MOTOR_INVERTED = false;
+
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 20;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 20;
+
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 20;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 20;
+
+        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
+
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
@@ -68,6 +84,51 @@ public final class Constants {
         public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
         public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
 
+        public static final double TOP_MOTOR_LOW_RPMS = 0;
+        public static final double BOTTOM_MOTOR_LOW_RPMS = 0;
+
+        public static final double TOP_MOTOR_MID_RPMS = 0;
+        public static final double BOTTOM_MOTOR_MID_RPMS = 0;
+
+        public static final double TOP_MOTOR_HIGH_RPMS = 0;
+        public static final double BOTTOM_MOTOR_HIGH_RPMS = 0;
+
+        public static final double TOP_MOTOR_FAR_RPMS = 0;
+        public static final double BOTTOM_MOTOR_FAR_RPMS = 0;
+        public static final int MASTER_INTAKE_SLIDE_MOTOR_ID = 21;
+        public static final int FOLLOWER_INTAKE_SLIDE_MOTOR_ID = 22;
+    }
+
+    public static final class INTAKE_SLIDE {
+        public static final boolean MASTER_MOTOR_INVERTED = false;
+        public static final boolean FOLLOWER_MOTOR_INVERTED = false;
+
+        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+
+        public static final int MOTOR_STALL_LIMIT_AMPS = 20;
+        public static final int MOTOR_FREE_LIMIT_AMPS = 20;
+
+        public static final double AXIS_MAX_SPEED = 0.5;
+
+        public static final double SLIDE_EXTENDED_ROTATIONS = 0;
+        public static final double SLIDE_RETRACTED_ROTATIONS = 0;
+
+        public static final double MAX_AMPS = 20;
+
+        // PID
+        public static final double SLIDE_P = 0;
+        public static final double SLIDE_I = 0;
+        public static final double SLIDE_D = 0;
+        public static final double SLIDE_IZONE = 0;
+        public static final double SLIDE_FF = 0;
+
+        // Smart motion
+        public static final double PID_MIN_OUTPUT = 0;
+        public static final double PID_MAX_OUTPUT = 0;
+        public static final double SMART_MOTION_MAX_VEL_RPM = 0;
+        public static final double SMART_MOTION_MIN_VEL_RPM = 0;
+        public static final double SMART_MOTION_MAX_ACC_RPM = 0;
+        public static final double SMART_MOTION_ALLOWED_ERROR = 0;
     }
 
     public static final class SWERVE {
@@ -87,7 +148,8 @@ public final class Constants {
         public static final int DRIVE_CONTROLLER_PORT = 0;
         public static final int OPERATOR_CONTROLLER_PORT = 1;
 
-        public static final double DRIVE_CONTROLLER_DEADBAND = 0.1;
+        public static final double DRIVE_CONTROLLER_DEADBAND = 0.05;
+        public static final double OPERATOR_CONTROLLER_DEADBAND = 0.1;
 
         public static final double RUMBLE_INTENSITY = 0.5;
         public static final double RUMBLE_TIMEOUT_SECONDS_ON_TELEOP_AUTO = 1;

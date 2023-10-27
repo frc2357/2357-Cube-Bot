@@ -14,6 +14,8 @@ import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
+import com.team2357.frc2023.subsystems.ShooterSubsystem;
+import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
@@ -36,6 +38,8 @@ public class Robot extends LoggedRobot {
 
   public static SwerveDriveSubsystem drive;
   public static IntakeRollerSubsystem intakeRoller;
+  public static ShooterSubsystem shooter;
+  public static IntakeSlideSubsystem slide;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -52,11 +56,14 @@ public class Robot extends LoggedRobot {
     Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
     intakeRoller = new IntakeRollerSubsystem();
 
     driverControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
     operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
+    shooter = new ShooterSubsystem();
+    slide = new IntakeSlideSubsystem();
 
     m_robotContainer = new RobotContainer();
 
