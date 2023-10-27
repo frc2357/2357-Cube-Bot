@@ -142,19 +142,19 @@ public final class Constants {
         public static final double MAX_AMPS = 20;
 
         // PID
-        public static final double SLIDE_P = 0;
+        public static final double SLIDE_P = 0.00001;
         public static final double SLIDE_I = 0;
         public static final double SLIDE_D = 0;
         public static final double SLIDE_IZONE = 0;
-        public static final double SLIDE_FF = 0;
+        public static final double SLIDE_FF = 0.00025;
 
         // Smart motion
         public static final double PID_MIN_OUTPUT = 0;
         public static final double PID_MAX_OUTPUT = 0;
-        public static final double SMART_MOTION_MAX_VEL_RPM = 0;
+        public static final double SMART_MOTION_MAX_VEL_RPM = 4600;
         public static final double SMART_MOTION_MIN_VEL_RPM = 0;
-        public static final double SMART_MOTION_MAX_ACC_RPM = 0;
-        public static final double SMART_MOTION_ALLOWED_ERROR = 0;
+        public static final double SMART_MOTION_MAX_ACC_RPM = 4600 * 2;
+        public static final double SMART_MOTION_ALLOWED_ERROR = 0.25;
     }
 
 
