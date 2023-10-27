@@ -34,14 +34,14 @@ public final class Constants {
         public static final boolean TOP_MOTOR_INVERTED = false;
         public static final boolean BOTTOM_MOTOR_INVERTED = false;
         
-        public static final double TOP_AXIS_MAX_SPEED = 0.5;
-        public static final double BOTTOM_AXIS_MAX_SPEED = 0.5;
+        public static final double TOP_AXIS_MAX_SPEED = 1;
+        public static final double BOTTOM_AXIS_MAX_SPEED = 1;
 
-        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 10;
-        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 10;
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 30;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 30;
 
-        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 10;
-        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 10;
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 30;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 30;
 
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
 
