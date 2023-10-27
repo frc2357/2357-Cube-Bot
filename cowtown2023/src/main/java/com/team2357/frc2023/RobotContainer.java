@@ -20,12 +20,15 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  private AutoCommandChooser m_autoCommandChooser;
+
   public RobotContainer() {
 
     SwerveDriveControls driveControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
     OperatorControls operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
     Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, driveControls));
 
+    m_autoCommandChooser = new AutoCommandChooser();
   }
 
   /**
@@ -34,6 +37,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    return m_autoCommandChooser.getSelectedAutoCommand();
   }
 }
