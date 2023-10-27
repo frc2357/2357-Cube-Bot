@@ -1,6 +1,5 @@
 package com.team2357.frc2023.commands;
 
-import swervelib.SwerveController;
 import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.state.RobotState;
@@ -10,6 +9,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import swervelib.SwerveController;
 
 public class DefaultDriveCommand extends CommandBase {
     private final SwerveDriveSubsystem m_swerve;

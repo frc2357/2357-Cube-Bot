@@ -27,7 +27,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     private double m_trajectoryStartSeconds;
 
     public SwerveDriveSubsystem(File directory) {
-        SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
+        SwerveDriveTelemetry.verbosity = TelemetryVerbosity.NONE;
         try {
             m_swerve = new SwerveParser(directory).createSwerveDrive();
 

@@ -38,7 +38,7 @@ public final class Constants {
     public static final class INTAKE_ROLLER {
         // Configuration
         public static final boolean TOP_MOTOR_INVERTED = false;
-        public static final boolean BOTTOM_MOTOR_INVERTED = false;
+        public static final boolean BOTTOM_MOTOR_INVERTED = true;
         
         public static final double TOP_AXIS_MAX_SPEED = 1;
         public static final double BOTTOM_AXIS_MAX_SPEED = 1;
@@ -54,25 +54,25 @@ public final class Constants {
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
-        public static final double TOP_MOTOR_FF = 0.0;
+        public static final double TOP_MOTOR_FF = 0.000193;
 
         public static final double BOTTOM_MOTOR_P = 0.0;
         public static final double BOTTOM_MOTOR_I = 0.0;
         public static final double BOTTOM_MOTOR_D = 0.0;
-        public static final double BOTTOM_MOTOR_FF = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.000189;
 
         // Motor speeds
-        public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +0.75;
+        public static final double TOP_MOTOR_INTAKE_RPMS = +2500;
+        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +5000;
         
-        public static final double TOP_MOTOR_EJECT_RPMS = -0.5;
-        public static final double BOTTOM_MOTOR_EJECT_RPMS = +0.35;
+        public static final double TOP_MOTOR_EJECT_RPMS = -2500;
+        public static final double BOTTOM_MOTOR_EJECT_RPMS = +5000;
         
-        public static final double TOP_MOTOR_INDEX_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_INDEX_RPMS = -0.35;
+        public static final double TOP_MOTOR_INDEX_RPMS = +3000;
+        public static final double BOTTOM_MOTOR_INDEX_RPMS = -3000;
 
-        public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
+        public static final double TOP_MOTOR_ROLL_RPMS = +2000;
+        public static final double BOTTOM_MOTOR_ROLL_RPMS = +4000;
 
     }
 
@@ -86,44 +86,29 @@ public final class Constants {
         public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 20;
         public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 20;
 
-        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
+        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kCoast;
 
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
-        public static final double TOP_MOTOR_FF = 0.0;
+        public static final double TOP_MOTOR_FF = 0.00018;
 
         public static final double BOTTOM_MOTOR_P = 0.0;
         public static final double BOTTOM_MOTOR_I = 0.0;
         public static final double BOTTOM_MOTOR_D = 0.0;
-        public static final double BOTTOM_MOTOR_FF = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.00018075;
 
-        // Motor speeds
-        public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +0.75;
-        
-        public static final double TOP_MOTOR_EJECT_RPMS = -0.5;
-        public static final double BOTTOM_MOTOR_EJECT_RPMS = +0.35;
-        
-        public static final double TOP_MOTOR_INDEX_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_INDEX_RPMS = -0.35;
+        public static final double TOP_MOTOR_LOW_RPMS = 500;
+        public static final double BOTTOM_MOTOR_LOW_RPMS = 500;
 
-        public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
-        public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
+        public static final double TOP_MOTOR_MID_RPMS = 850;
+        public static final double BOTTOM_MOTOR_MID_RPMS = 825;
 
-        public static final double TOP_MOTOR_LOW_RPMS = 0;
-        public static final double BOTTOM_MOTOR_LOW_RPMS = 0;
+        public static final double TOP_MOTOR_HIGH_RPMS = 1050;
+        public static final double BOTTOM_MOTOR_HIGH_RPMS = 1500;
 
-        public static final double TOP_MOTOR_MID_RPMS = 0;
-        public static final double BOTTOM_MOTOR_MID_RPMS = 0;
-
-        public static final double TOP_MOTOR_HIGH_RPMS = 0;
-        public static final double BOTTOM_MOTOR_HIGH_RPMS = 0;
-
-        public static final double TOP_MOTOR_FAR_RPMS = 0;
-        public static final double BOTTOM_MOTOR_FAR_RPMS = 0;
-        public static final int MASTER_INTAKE_SLIDE_MOTOR_ID = 21;
-        public static final int FOLLOWER_INTAKE_SLIDE_MOTOR_ID = 22;
+        public static final double TOP_MOTOR_FAR_RPMS = 2000;
+        public static final double BOTTOM_MOTOR_FAR_RPMS = 500;
     }
 
     public static final class INTAKE_SLIDE {
@@ -132,30 +117,32 @@ public final class Constants {
 
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
 
-        public static final int MOTOR_STALL_LIMIT_AMPS = 20;
-        public static final int MOTOR_FREE_LIMIT_AMPS = 20;
+        public static final int MOTOR_STALL_LIMIT_AMPS = 15;
+        public static final int MOTOR_FREE_LIMIT_AMPS = 15;
 
-        public static final double AXIS_MAX_SPEED = 0.5;
+        public static final double AXIS_MAX_SPEED = 0.25;
 
-        public static final double SLIDE_EXTENDED_ROTATIONS = 0;
-        public static final double SLIDE_RETRACTED_ROTATIONS = 0;
+        public static final double SLIDE_EXTENDED_ROTATIONS = 44;
+        public static final double SLIDE_RETRACTED_ROTATIONS = 3;
+        public static final double SLIDE_PARTIAL_EXTEND_ROTATIONS = 45;
+        public static final double SLIDE_PARTIAL_RETRACT_ROTATIONS = 2;
 
         public static final double MAX_AMPS = 20;
 
         // PID
-        public static final double SLIDE_P = 0;
+        public static final double SLIDE_P = 0.00001;
         public static final double SLIDE_I = 0;
         public static final double SLIDE_D = 0;
         public static final double SLIDE_IZONE = 0;
-        public static final double SLIDE_FF = 0;
+        public static final double SLIDE_FF = 0.00025;
 
         // Smart motion
-        public static final double PID_MIN_OUTPUT = 0;
-        public static final double PID_MAX_OUTPUT = 0;
-        public static final double SMART_MOTION_MAX_VEL_RPM = 0;
+        public static final double PID_MIN_OUTPUT = -1;
+        public static final double PID_MAX_OUTPUT = 1;
+        public static final double SMART_MOTION_MAX_VEL_RPM = 4600;
         public static final double SMART_MOTION_MIN_VEL_RPM = 0;
-        public static final double SMART_MOTION_MAX_ACC_RPM = 0;
-        public static final double SMART_MOTION_ALLOWED_ERROR = 0;
+        public static final double SMART_MOTION_MAX_ACC_RPM = 4600 * 2;
+        public static final double SMART_MOTION_ALLOWED_ERROR = 0.25;
     }
 
 

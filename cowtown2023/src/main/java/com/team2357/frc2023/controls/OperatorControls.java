@@ -1,12 +1,12 @@
 package com.team2357.frc2023.controls;
 
-import com.team2357.frc2023.commands.human.panic.IntakeRollerAxisCommand;
-import com.team2357.lib.triggers.AxisThresholdTrigger;
-import com.team2357.frc2023.commands.human.panic.ShooterAxisCommand;
-import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.frc2023.Constants;
+import com.team2357.frc2023.Robot;
+import com.team2357.frc2023.commands.human.panic.IntakeRollerAxisCommand;
 import com.team2357.frc2023.commands.human.panic.IntakeSlideAxisCommand;
-import com.team2357.frc2023.commands.human.panic.IntakeSlideToggleCommand;
+import com.team2357.frc2023.commands.human.panic.ShooterAxisCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerRollCubeCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.Utility;
 import com.team2357.lib.util.XboxRaw;
@@ -14,6 +14,7 @@ import com.team2357.lib.util.XboxRaw;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -47,8 +48,8 @@ public class OperatorControls implements RumbleInterface {
         m_controller = new XboxController(portNumber);
 
         // Triggers
-        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, .1);
-        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, .1);
+        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, .1);
+        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, .1);
 
         // Buttons
         m_leftStickButton = new JoystickButton(m_controller, XboxRaw.StickPressLeft.value);
@@ -121,8 +122,8 @@ public class OperatorControls implements RumbleInterface {
         //     return -getLeftTriggerAxis();
         // };
 
-        // Trigger noDPad = new Trigger(() -> m_upDPad.getAsBoolean() || m_rightDPad.getAsBoolean()
-        //         || m_downDPad.getAsBoolean() || m_leftDPad.getAsBoolean()).negate();
+        Trigger noDPad = new Trigger(() -> m_upDPad.getAsBoolean() || m_rightDPad.getAsBoolean()
+                || m_downDPad.getAsBoolean() || m_leftDPad.getAsBoolean()).negate();
 
         Trigger noLetterButtons = m_aButton.or(m_bButton).or(m_xButton).or(m_yButton).negate();
         Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
@@ -147,7 +148,7 @@ public class OperatorControls implements RumbleInterface {
 
         Trigger rightDPadAndA = m_rightDPad.and(m_aButton);
         // Trigger rightDPadAndX = m_rightDPad.and(m_xButton);
-        // Trigger rightDPadAndY = m_rightDPad.and(m_yButton);
+        Trigger rightDPadAndY = m_rightDPad.and(m_yButton);
         // Trigger rightDPadAndB = m_rightDPad.and(m_bButton);
         // Trigger rightDPadAndRightTrigger = m_rightDPad.and(m_rightTrigger);
         // Trigger rightDPadAndLeftTrigger = m_rightDPad.and(m_leftTrigger);
@@ -160,8 +161,19 @@ public class OperatorControls implements RumbleInterface {
         // Trigger yButton = m_yButton.and(noDPad);
         // Trigger xButton = m_xButton.and(noDPad);
 
+        Trigger rightTrigger = m_rightTrigger.and(noDPad);
+        Trigger leftTrigger = m_leftTrigger.and(noDPad);
+
+        rightTrigger.whileTrue(new IntakeRollerRollCubeCommand());
+        rightTrigger.onFalse(new InstantCommand(() -> {
+            Robot.intakeRoller.stop();
+        }));
+            
         rightDPadOnly.whileTrue(new IntakeSlideAxisCommand(axisRightStickY));
-        rightDPadAndA.onTrue(new IntakeSlideToggleCommand());
+        // rightDPadAndA.onTrue(new IntakeSlideToggleCommand());
+        rightDPadAndY.onTrue(new InstantCommand(() -> {
+            Robot.slide.zero();
+        }));
       
         upDPadOnly.whileTrue(new ShooterAxisCommand(rightTriggerAxis));
 

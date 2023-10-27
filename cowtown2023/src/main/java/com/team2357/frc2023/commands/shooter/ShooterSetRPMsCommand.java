@@ -20,7 +20,7 @@ public class ShooterSetRPMsCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return Robot.shooter.isAtRPMs(m_topRPMs, m_bottomRPMs);
     }
 
     @Override

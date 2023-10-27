@@ -1,19 +1,20 @@
 package com.team2357.frc2023.controls;
 
 import com.team2357.frc2023.Robot;
-import com.team2357.frc2023.commands.intakeRoller.IntakeRollerEjectCubeCommand;
-import com.team2357.frc2023.commands.intakeRoller.IntakeRollerIndexCubeCommand;
-import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
-import com.team2357.frc2023.commands.intakeRoller.IntakeRollerRollCubeCommand;
-import com.team2357.lib.triggers.AxisThresholdTrigger;
+import com.team2357.frc2023.commands.IntakeDeployCommandGroup;
+import com.team2357.frc2023.commands.IntakeStowCommandGroup;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerStopMotorsCommand;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup.SHOOTER_RPMS;
+import com.team2357.frc2023.commands.shooter.ShooterStopMotorsCommand;
+import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.XboxRaw;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class SwerveDriveControls implements RumbleInterface {
@@ -55,19 +56,17 @@ public class SwerveDriveControls implements RumbleInterface {
     }
 
     private void mapControls() {
-        m_aButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.LOW));
-        m_xButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.MID));
-        m_yButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.HIGH));
-        m_bButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.FAR));
+        m_aButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.LOW));
+        m_xButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.MID));
+        m_yButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.HIGH));
+        m_bButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.FAR));
 
         m_backButton.onTrue(new InstantCommand(() -> {
             Robot.drive.zeroGyro();
         }));
 
-        m_rightTrigger.whileTrue(new IntakeRollerPickupCubeCommand());
-        m_leftTrigger.whileTrue(new IntakeRollerEjectCubeCommand());
-        m_rightBumper.whileTrue(new IntakeRollerRollCubeCommand());
-        m_leftBumper.whileTrue(new IntakeRollerIndexCubeCommand());
+        m_rightTrigger.whileTrue(new IntakeDeployCommandGroup());
+        m_rightTrigger.onFalse(new IntakeStowCommandGroup());
     }
 
     public double getX() {

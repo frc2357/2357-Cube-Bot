@@ -5,6 +5,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.team2357.frc2023.Constants;
+import com.team2357.lib.util.Utility;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -50,6 +51,9 @@ public class ShooterSubsystem extends SubsystemBase {
         m_bottomPIDController.setD(Constants.SHOOTER.BOTTOM_MOTOR_D);
         m_bottomPIDController.setFF(Constants.SHOOTER.BOTTOM_MOTOR_FF);
 
+        m_topPIDController.setOutputRange(-1, 1);
+        m_bottomPIDController.setOutputRange(-1, 1);
+
     }
 
     public void setRPMs(double topRPMs, double bottomRPMs) {
@@ -76,7 +80,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public boolean isAtRPMs(double topRPMs, double bottomRPMs) {
-        return getTopVelocity() == topRPMs && getBottomVelocity() == bottomRPMs;
+        return Utility.isWithinTolerance(getTopVelocity(), topRPMs, 100) && Utility.isWithinTolerance(getBottomVelocity(), bottomRPMs, 100);
     }
 
 }
