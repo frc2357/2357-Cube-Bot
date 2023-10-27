@@ -5,19 +5,16 @@
 package com.team2357.frc2023;
 
 import java.io.File;
-import java.util.TimerTask;
 
-import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.networktables.NT4Publisher;
-import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
+import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
@@ -40,6 +37,7 @@ public class Robot extends LoggedRobot {
 
   public static SwerveDriveSubsystem drive;
   public static ShooterSubsystem shooter;
+  public static IntakeSlideSubsystem slide;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -59,6 +57,7 @@ public class Robot extends LoggedRobot {
 
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
     shooter = new ShooterSubsystem();
+    slide = new IntakeSlideSubsystem();
 
     m_robotContainer = new RobotContainer();
 
