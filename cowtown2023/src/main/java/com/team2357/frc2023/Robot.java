@@ -5,18 +5,17 @@
 package com.team2357.frc2023;
 
 import java.io.File;
-import java.util.TimerTask;
 
-import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.networktables.NT4Publisher;
-import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
+import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
+import com.team2357.frc2023.subsystems.ShooterSubsystem;
+import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
@@ -38,6 +37,9 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
+  public static IntakeRollerSubsystem intakeRoller;
+  public static ShooterSubsystem shooter;
+  public static IntakeSlideSubsystem slide;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -54,7 +56,11 @@ public class Robot extends LoggedRobot {
     Logger.getInstance().start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
+    intakeRoller = new IntakeRollerSubsystem();
+    shooter = new ShooterSubsystem();
+    slide = new IntakeSlideSubsystem();
 
     m_robotContainer = new RobotContainer();
 
