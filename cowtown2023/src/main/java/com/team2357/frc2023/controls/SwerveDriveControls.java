@@ -55,19 +55,17 @@ public class SwerveDriveControls implements RumbleInterface {
     }
 
     private void mapControls() {
-        m_aButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.LOW));
-        m_xButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.MID));
-        m_yButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.HIGH));
-        m_bButton.onTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.FAR));
+        m_aButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.LOW));
+        m_xButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.MID));
+        m_yButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.HIGH));
+        m_bButton.whileTrue(new ShootCubeCommandGroup(SHOOTER_RPMS.FAR));
 
         m_backButton.onTrue(new InstantCommand(() -> {
             Robot.drive.zeroGyro();
         }));
 
         m_rightTrigger.whileTrue(new IntakeRollerPickupCubeCommand());
-        m_leftTrigger.whileTrue(new IntakeRollerEjectCubeCommand());
-        m_rightBumper.whileTrue(new IntakeRollerRollCubeCommand());
-        m_leftBumper.whileTrue(new IntakeRollerIndexCubeCommand());
+        m_rightBumper.whileTrue(new IntakeRollerEjectCubeCommand());
     }
 
     public double getX() {
