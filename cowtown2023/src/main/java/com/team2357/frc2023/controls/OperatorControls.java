@@ -1,5 +1,7 @@
 package com.team2357.frc2023.controls;
 
+import com.team2357.frc2023.commands.human.panic.ShooterAxisCommand;
+import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.commands.human.panic.IntakeSlideAxisCommand;
 import com.team2357.frc2023.commands.human.panic.IntakeSlideToggleCommand;
@@ -75,6 +77,16 @@ public class OperatorControls implements RumbleInterface {
         return m_controller.getRightTriggerAxis();
     }
 
+    private void mapControls() {
+        AxisInterface rightTriggerAxis = () -> {
+            return m_controller.getRightTriggerAxis();
+        };
+
+        Trigger noLetterButtons = m_aButton.or(m_bButton).or(m_xButton).or(m_yButton).negate();
+        Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
+
+
+        upDPadOnly.whileTrue(new ShooterAxisCommand(rightTriggerAxis));
     public double getLeftTriggerAxis() {
         return m_controller.getLeftTriggerAxis();
     }
