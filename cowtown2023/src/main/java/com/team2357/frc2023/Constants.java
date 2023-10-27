@@ -24,8 +24,55 @@ public final class Constants {
         public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR_ID = 17;
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR_ID = 18;
 
+        public static final int BOTTOM_INTAKE_ROLLER_MOTOR_ID = 19;
+        public static final int TOP_INTAKE_ROLLER_MOTOR_ID = 20;
+
+        public static final int MASTER_INTAKE_SLIDE_MOTOR_ID = 21;
+        public static final int FOLLOWER_INTAKE_SLIDE_MOTOR_ID = 22;
+
         public static final int TOP_SHOOTER_MOTOR_ID = 23;
         public static final int BOTTOM_SHOOTER_MOTOR_ID = 24;
+    }
+
+    public static final class INTAKE_ROLLER {
+        // Configuration
+        public static final boolean TOP_MOTOR_INVERTED = false;
+        public static final boolean BOTTOM_MOTOR_INVERTED = false;
+        
+        public static final double TOP_AXIS_MAX_SPEED = 1;
+        public static final double BOTTOM_AXIS_MAX_SPEED = 1;
+
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 30;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 30;
+
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 30;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 30;
+
+        public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
+
+        public static final double TOP_MOTOR_P = 0.0;
+        public static final double TOP_MOTOR_I = 0.0;
+        public static final double TOP_MOTOR_D = 0.0;
+        public static final double TOP_MOTOR_FF = 0.0;
+
+        public static final double BOTTOM_MOTOR_P = 0.0;
+        public static final double BOTTOM_MOTOR_I = 0.0;
+        public static final double BOTTOM_MOTOR_D = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.0;
+
+        // Motor speeds
+        public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +0.75;
+        
+        public static final double TOP_MOTOR_EJECT_RPMS = -0.5;
+        public static final double BOTTOM_MOTOR_EJECT_RPMS = +0.35;
+        
+        public static final double TOP_MOTOR_INDEX_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INDEX_RPMS = -0.35;
+
+        public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
+
     }
 
     public static final class SHOOTER {
@@ -40,7 +87,6 @@ public final class Constants {
 
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
 
-
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
@@ -50,6 +96,19 @@ public final class Constants {
         public static final double BOTTOM_MOTOR_I = 0.0;
         public static final double BOTTOM_MOTOR_D = 0.0;
         public static final double BOTTOM_MOTOR_FF = 0.0;
+
+        // Motor speeds
+        public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INTAKE_RPMS = +0.75;
+        
+        public static final double TOP_MOTOR_EJECT_RPMS = -0.5;
+        public static final double BOTTOM_MOTOR_EJECT_RPMS = +0.35;
+        
+        public static final double TOP_MOTOR_INDEX_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_INDEX_RPMS = -0.35;
+
+        public static final double TOP_MOTOR_ROLL_RPMS = +0.5;
+        public static final double BOTTOM_MOTOR_ROLL_RPMS = +0.35;
 
         public static final double TOP_MOTOR_LOW_RPMS = 0;
         public static final double BOTTOM_MOTOR_LOW_RPMS = 0;
@@ -67,8 +126,8 @@ public final class Constants {
     }
 
     public static final class INTAKE_SLIDE {
-        public static final boolean MASTER_MOTOR_INVERTED = false;
-        public static final boolean FOLLOWER_MOTOR_INVERTED = false;
+        public static final boolean MASTER_MOTOR_INVERTED = true;
+        public static final boolean FOLLOWER_MOTOR_INVERTED = true;
 
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
 
@@ -97,6 +156,7 @@ public final class Constants {
         public static final double SMART_MOTION_MAX_ACC_RPM = 0;
         public static final double SMART_MOTION_ALLOWED_ERROR = 0;
     }
+
 
     public static final class SWERVE {
         public static final double TRACKWIDTH_METERS = Units.inchesToMeters(18.75);

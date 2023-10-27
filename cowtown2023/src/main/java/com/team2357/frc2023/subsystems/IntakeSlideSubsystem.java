@@ -27,7 +27,7 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
 
     public IntakeSlideSubsystem() {
         m_masterSlideMotor = new CANSparkMax(Constants.CAN_ID.MASTER_INTAKE_SLIDE_MOTOR_ID, MotorType.kBrushless);
-        m_masterSlideMotor = new CANSparkMax(Constants.CAN_ID.FOLLOWER_INTAKE_SLIDE_MOTOR_ID, MotorType.kBrushless);
+        m_followerSlideMotor = new CANSparkMax(Constants.CAN_ID.FOLLOWER_INTAKE_SLIDE_MOTOR_ID, MotorType.kBrushless);
 
         configure();
     }
@@ -36,7 +36,7 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
         m_masterSlideMotor.setInverted(Constants.INTAKE_SLIDE.MASTER_MOTOR_INVERTED);
         m_followerSlideMotor.setInverted(Constants.INTAKE_SLIDE.FOLLOWER_MOTOR_INVERTED);
 
-        m_followerSlideMotor.follow(m_masterSlideMotor);
+        m_followerSlideMotor.follow(m_masterSlideMotor, true);
 
         m_masterSlideMotor.setIdleMode(Constants.INTAKE_SLIDE.IDLE_MODE);
         m_masterSlideMotor.setSmartCurrentLimit(Constants.INTAKE_SLIDE.MOTOR_STALL_LIMIT_AMPS,

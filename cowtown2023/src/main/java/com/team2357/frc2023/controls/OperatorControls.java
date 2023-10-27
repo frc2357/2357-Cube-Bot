@@ -1,5 +1,7 @@
 package com.team2357.frc2023.controls;
 
+import com.team2357.frc2023.commands.human.panic.IntakeRollerAxisCommand;
+import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.frc2023.commands.human.panic.ShooterAxisCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.frc2023.Constants;
@@ -45,8 +47,8 @@ public class OperatorControls implements RumbleInterface {
         m_controller = new XboxController(portNumber);
 
         // Triggers
-        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, .1);
-        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, .1);
+        m_leftTrigger = new AxisThresholdTrigger(m_controller, Axis.kRightTrigger, .1);
+        m_rightTrigger = new AxisThresholdTrigger(m_controller, Axis.kLeftTrigger, .1);
 
         // Buttons
         m_leftStickButton = new JoystickButton(m_controller, XboxRaw.StickPressLeft.value);
@@ -59,13 +61,24 @@ public class OperatorControls implements RumbleInterface {
         m_xButton = new JoystickButton(m_controller, XboxRaw.X.value);
         m_yButton = new JoystickButton(m_controller, XboxRaw.Y.value);
 
-        // Dpad
         m_upDPad = new POVButton(m_controller, 0);
         m_rightDPad = new POVButton(m_controller, 90);
         m_downDPad = new POVButton(m_controller, 180);
         m_leftDPad = new POVButton(m_controller, 270);
 
         mapControls();
+    }
+
+    public double getTopIntakeRollerAxis() {
+        double value = m_controller.getRightTriggerAxis();
+        boolean reverse = m_rightBumper.getAsBoolean();
+        return -((reverse ? -1 : 1) * value);
+    }
+
+    public double getBottomIntakeRollerAxis() {
+        double value = m_controller.getLeftTriggerAxis();
+        boolean reverse = m_leftBumper.getAsBoolean();
+        return (reverse ? -1 : 1) * value;
     }
 
     public double getRightYAxis() {
@@ -77,16 +90,6 @@ public class OperatorControls implements RumbleInterface {
         return m_controller.getRightTriggerAxis();
     }
 
-    private void mapControls() {
-        AxisInterface rightTriggerAxis = () -> {
-            return m_controller.getRightTriggerAxis();
-        };
-
-        Trigger noLetterButtons = m_aButton.or(m_bButton).or(m_xButton).or(m_yButton).negate();
-        Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
-
-
-        upDPadOnly.whileTrue(new ShooterAxisCommand(rightTriggerAxis));
     public double getLeftTriggerAxis() {
         return m_controller.getLeftTriggerAxis();
     }
@@ -96,6 +99,18 @@ public class OperatorControls implements RumbleInterface {
 
         AxisInterface axisRightStickY = () -> {
             return getRightYAxis();
+        };
+
+        AxisInterface rightTriggerAxis = () -> {
+            return m_controller.getRightTriggerAxis();
+        };
+
+        AxisInterface topIntakeRollerAxis = () -> {
+            return getTopIntakeRollerAxis();
+        };
+
+        AxisInterface bottomIntakeRollerAxis = () -> {
+            return getBottomIntakeRollerAxis();
         };
 
         // AxisInterface intakeRollerForwardAxis = () -> {
@@ -110,8 +125,8 @@ public class OperatorControls implements RumbleInterface {
         //         || m_downDPad.getAsBoolean() || m_leftDPad.getAsBoolean()).negate();
 
         Trigger noLetterButtons = m_aButton.or(m_bButton).or(m_xButton).or(m_yButton).negate();
-        // Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
-        // Trigger downDPadOnly = m_downDPad.and(noLetterButtons);
+        Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
+        Trigger downDPadOnly = m_downDPad.and(noLetterButtons);
         // Trigger leftDPadOnly = m_leftDPad.and(noLetterButtons);
         Trigger rightDPadOnly = m_rightDPad.and(noLetterButtons);
 
@@ -147,6 +162,11 @@ public class OperatorControls implements RumbleInterface {
 
         rightDPadOnly.whileTrue(new IntakeSlideAxisCommand(axisRightStickY));
         rightDPadAndA.onTrue(new IntakeSlideToggleCommand());
+      
+        upDPadOnly.whileTrue(new ShooterAxisCommand(rightTriggerAxis));
+
+        downDPadOnly.whileTrue(new IntakeRollerAxisCommand(topIntakeRollerAxis, bottomIntakeRollerAxis));
+    
     }
 
     public void setRumble(RumbleType type, double intensity) {

@@ -5,6 +5,7 @@
 package com.team2357.frc2023;
 
 import com.team2357.frc2023.commands.DefaultDriveCommand;
+import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -22,6 +23,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     SwerveDriveControls driveControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
+    OperatorControls operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
     Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, driveControls));
 
   }

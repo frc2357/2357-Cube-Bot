@@ -13,6 +13,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import com.team2357.frc2023.commands.SetCoastOnDisableCommand;
 import com.team2357.frc2023.controls.OperatorControls;
 import com.team2357.frc2023.controls.SwerveDriveControls;
+import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
@@ -36,6 +37,7 @@ public class Robot extends LoggedRobot {
   private RobotContainer m_robotContainer;
 
   public static SwerveDriveSubsystem drive;
+  public static IntakeRollerSubsystem intakeRoller;
   public static ShooterSubsystem shooter;
   public static IntakeSlideSubsystem slide;
 
@@ -56,6 +58,7 @@ public class Robot extends LoggedRobot {
     // autonomous chooser on the dashboard.
 
     drive = new SwerveDriveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve/neo"));
+    intakeRoller = new IntakeRollerSubsystem();
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
 
