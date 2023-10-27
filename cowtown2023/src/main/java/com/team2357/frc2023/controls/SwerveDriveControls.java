@@ -102,7 +102,7 @@ public class SwerveDriveControls implements RumbleInterface {
     }
 
     public double getRotation() {
-        return -modifyAxis(m_controller.getRightX());
+        return modifyAxis(m_controller.getRightX());
     }
 
     public double deadband(double value, double deadband) {
