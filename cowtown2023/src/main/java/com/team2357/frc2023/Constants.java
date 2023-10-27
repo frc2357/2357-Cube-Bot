@@ -99,15 +99,23 @@ public final class Constants {
 
         public static final double TOP_MOTOR_LOW_RPMS = 500;
         public static final double BOTTOM_MOTOR_LOW_RPMS = 500;
+        public static final String SMART_DASHBOARD_SHOOT_LOW_TOP = "ShootLowTop";
+        public static final String SMART_DASHBOARD_SHOOT_LOW_BOTTOM = "ShootLowBottom";
 
         public static final double TOP_MOTOR_MID_RPMS = 850;
         public static final double BOTTOM_MOTOR_MID_RPMS = 825;
+        public static final String SMART_DASHBOARD_SHOOT_MID_TOP = "ShootMidTop";
+        public static final String SMART_DASHBOARD_SHOOT_MID_BOTTOM = "ShootMidBottom";
 
         public static final double TOP_MOTOR_HIGH_RPMS = 1050;
         public static final double BOTTOM_MOTOR_HIGH_RPMS = 1500;
+        public static final String SMART_DASHBOARD_SHOOT_HIGH_TOP = "ShootHighTop";
+        public static final String SMART_DASHBOARD_SHOOT_HIGH_BOTTOM = "ShootHighBottom";
 
         public static final double TOP_MOTOR_FAR_RPMS = 2000;
         public static final double BOTTOM_MOTOR_FAR_RPMS = 500;
+        public static final String SMART_DASHBOARD_SHOOT_FAR_TOP = "ShootFarTop";
+        public static final String SMART_DASHBOARD_SHOOT_FAR_BOTTOM = "ShootFarBottom";
     }
 
     public static final class INTAKE_SLIDE {
