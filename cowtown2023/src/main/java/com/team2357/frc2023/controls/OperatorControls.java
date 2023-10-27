@@ -122,8 +122,8 @@ public class OperatorControls implements RumbleInterface {
         //     return -getLeftTriggerAxis();
         // };
 
-        // Trigger noDPad = new Trigger(() -> m_upDPad.getAsBoolean() || m_rightDPad.getAsBoolean()
-        //         || m_downDPad.getAsBoolean() || m_leftDPad.getAsBoolean()).negate();
+        Trigger noDPad = new Trigger(() -> m_upDPad.getAsBoolean() || m_rightDPad.getAsBoolean()
+                || m_downDPad.getAsBoolean() || m_leftDPad.getAsBoolean()).negate();
 
         Trigger noLetterButtons = m_aButton.or(m_bButton).or(m_xButton).or(m_yButton).negate();
         Trigger upDPadOnly = m_upDPad.and(noLetterButtons);
@@ -161,8 +161,11 @@ public class OperatorControls implements RumbleInterface {
         // Trigger yButton = m_yButton.and(noDPad);
         // Trigger xButton = m_xButton.and(noDPad);
 
-        m_rightTrigger.whileTrue(new IntakeRollerRollCubeCommand());
-        m_rightTrigger.onFalse(new InstantCommand(() -> {
+        Trigger rightTrigger = m_rightTrigger.and(noDPad);
+        Trigger leftTrigger = m_leftTrigger.and(noDPad);
+
+        rightTrigger.whileTrue(new IntakeRollerRollCubeCommand());
+        rightTrigger.onFalse(new InstantCommand(() -> {
             Robot.intakeRoller.stop();
         }));
             

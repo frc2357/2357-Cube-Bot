@@ -24,5 +24,6 @@ public class IntakeSlideFinishRetractCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         Robot.slide.stopSlideMotors();
+        Robot.slide.zero();
     }
 }
