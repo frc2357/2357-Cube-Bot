@@ -119,7 +119,7 @@ public final class Constants {
         public static final int MOTOR_STALL_LIMIT_AMPS = 15;
         public static final int MOTOR_FREE_LIMIT_AMPS = 15;
 
-        public static final double AXIS_MAX_SPEED = 0.5;
+        public static final double AXIS_MAX_SPEED = 0.25;
 
         public static final double SLIDE_EXTENDED_ROTATIONS = 44;
         public static final double SLIDE_RETRACTED_ROTATIONS = 3;
