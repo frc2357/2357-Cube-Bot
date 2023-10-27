@@ -20,8 +20,6 @@ public class IntakeSlideFinishExtendCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        System.out.println(Robot.slide.getMasterRPMs());
-        System.out.println(Robot.slide.getFollowerRPMs());
         return (System.currentTimeMillis() - startMillis > 50)
                 && (Utility.isWithinTolerance(Robot.slide.getMasterRPMs(), 0, 15)
                         && Utility.isWithinTolerance(Robot.slide.getFollowerRPMs(), 0, 15));

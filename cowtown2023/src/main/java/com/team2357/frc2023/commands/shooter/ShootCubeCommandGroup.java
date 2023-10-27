@@ -2,12 +2,14 @@ package com.team2357.frc2023.commands.shooter;
 
 import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.commands.intakeRoller.IntakeRollerIndexCubeCommand;
+import com.team2357.frc2023.commands.intakeRoller.IntakeRollerStopMotorsCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class ShootCubeCommandGroup extends SequentialCommandGroup {
-    
+
     public enum SHOOTER_RPMS {
         LOW(
             Constants.SHOOTER.SMART_DASHBOARD_SHOOT_LOW_TOP,
@@ -59,8 +61,16 @@ public class ShootCubeCommandGroup extends SequentialCommandGroup {
 
     public ShootCubeCommandGroup(SHOOTER_RPMS position) {
         super(
-            new ShooterSetRPMsCommand(position.getTopRpms(), position.getBottomRpms()), 
-            new IntakeRollerIndexCubeCommand()
+            new SequentialCommandGroup(
+                new ShooterSetRPMsCommand(rpms.top, rpms.bottom),
+                new IntakeRollerIndexCubeCommand()
+            ).finallyDo((interrupted) -> {
+                new ParallelCommandGroup(
+                    new ShooterStopMotorsCommand(),
+                    new IntakeRollerStopMotorsCommand()
+                ).schedule();
+            })
         );
     }
+
 }
