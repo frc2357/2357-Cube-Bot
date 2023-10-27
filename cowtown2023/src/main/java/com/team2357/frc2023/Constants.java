@@ -53,12 +53,12 @@ public final class Constants {
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
-        public static final double TOP_MOTOR_FF = 0.0;
+        public static final double TOP_MOTOR_FF = 0.000193;
 
         public static final double BOTTOM_MOTOR_P = 0.0;
         public static final double BOTTOM_MOTOR_I = 0.0;
         public static final double BOTTOM_MOTOR_D = 0.0;
-        public static final double BOTTOM_MOTOR_FF = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.000189;
 
         // Motor speeds
         public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
@@ -90,12 +90,12 @@ public final class Constants {
         public static final double TOP_MOTOR_P = 0.0;
         public static final double TOP_MOTOR_I = 0.0;
         public static final double TOP_MOTOR_D = 0.0;
-        public static final double TOP_MOTOR_FF = 0.0;
+        public static final double TOP_MOTOR_FF = 0.00018;
 
         public static final double BOTTOM_MOTOR_P = 0.0;
         public static final double BOTTOM_MOTOR_I = 0.0;
         public static final double BOTTOM_MOTOR_D = 0.0;
-        public static final double BOTTOM_MOTOR_FF = 0.0;
+        public static final double BOTTOM_MOTOR_FF = 0.00018075;
 
         // Motor speeds
         public static final double TOP_MOTOR_INTAKE_RPMS = +0.5;
