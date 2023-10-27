@@ -100,14 +100,14 @@ public final class Constants {
         public static final double TOP_MOTOR_LOW_RPMS = 500;
         public static final double BOTTOM_MOTOR_LOW_RPMS = 500;
 
-        public static final double TOP_MOTOR_MID_RPMS = 1000;
-        public static final double BOTTOM_MOTOR_MID_RPMS = 800;
+        public static final double TOP_MOTOR_MID_RPMS = 850;
+        public static final double BOTTOM_MOTOR_MID_RPMS = 825;
 
-        public static final double TOP_MOTOR_HIGH_RPMS = 1250;
-        public static final double BOTTOM_MOTOR_HIGH_RPMS = 1875;
+        public static final double TOP_MOTOR_HIGH_RPMS = 1050;
+        public static final double BOTTOM_MOTOR_HIGH_RPMS = 1500;
 
-        public static final double TOP_MOTOR_FAR_RPMS = 5000;
-        public static final double BOTTOM_MOTOR_FAR_RPMS = 5000;
+        public static final double TOP_MOTOR_FAR_RPMS = 2000;
+        public static final double BOTTOM_MOTOR_FAR_RPMS = 500;
     }
 
     public static final class INTAKE_SLIDE {
