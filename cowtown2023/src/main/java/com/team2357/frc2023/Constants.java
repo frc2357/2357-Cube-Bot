@@ -4,10 +4,8 @@
 
 package com.team2357.frc2023;
 
-import com.pathplanner.lib.PathConstraints;
 import com.revrobotics.CANSparkMax.IdleMode;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -160,18 +158,11 @@ public final class Constants {
 
         public static final double ABSOLUTE_ENCODER_CONVERSION_FACTOR = 360;
 
-        // TODO: get some drive practice and tune these accordingly
         public static final double MAX_VELOCITY_METERS_PER_SECOND = 14.5;
         public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 4;
 
         public static final double TIME_TO_COAST_SECONDS = 5000;
 
-        // Trajectory
-        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(2.5, 1.5);
-
-        public static final PIDController TRAJECTORY_X_CONTROLLER = new PIDController(0,0,0);
-        public static final PIDController TRAJECTORY_Y_CONTROLLER = new PIDController(0,0,0);
-        public static final PIDController TRAJECTORY_THETA_CONTROLLER = new PIDController(0,0,0);
     }
 
     public static final class CONTROLLER {

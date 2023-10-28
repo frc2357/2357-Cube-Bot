@@ -2,7 +2,6 @@ package com.team2357.frc2023.subsystems;
 
 import java.io.File;
 
-import com.pathplanner.lib.PathPlannerTrajectory;
 import com.team2357.frc2023.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -11,7 +10,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import swervelib.SwerveDrive;
 import swervelib.SwerveModule;
@@ -22,9 +21,6 @@ import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 public class SwerveDriveSubsystem extends SubsystemBase {
 
     private SwerveDrive m_swerve;
-
-    private PathPlannerTrajectory m_currentTrajectory;
-    private double m_trajectoryStartSeconds;
 
     public SwerveDriveSubsystem(File directory) {
         SwerveDriveTelemetry.verbosity = TelemetryVerbosity.NONE;
@@ -42,10 +38,6 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         m_swerve.drive(translation.rotateBy(Rotation2d.fromDegrees(-90)), rotation, fieldRelative, isOpenLoop);
-    }
-
-    public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
-        m_swerve.setChassisSpeeds(chassisSpeeds);
     }
 
     public ChassisSpeeds getTargetSpeeds(double x, double y, Rotation2d rotation) {
@@ -98,19 +90,12 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         m_swerve.resetOdometry(pose);
     }
 
+    public void postTrajectory(Trajectory trajectory) {
+        m_swerve.postTrajectory(trajectory);
+    }
+
     public void updatePoseEstimator() {
         m_swerve.updateOdometry();
     }
-
-    // Trajectory
-    public void setCurrentTrajectory(PathPlannerTrajectory trajectory) {
-        m_currentTrajectory = trajectory;
-        m_trajectoryStartSeconds = Timer.getFPGATimestamp();
-    }
-
-    public void endTrajectory() {
-        m_currentTrajectory = null;
-        m_trajectoryStartSeconds = 0;
-    }
-
+    
 }
