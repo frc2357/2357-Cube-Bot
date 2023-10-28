@@ -5,6 +5,7 @@
 package com.team2357.frc2023;
 
 import com.pathplanner.lib.PathConstraints;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
@@ -49,6 +50,8 @@ public final class Constants {
         public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 30;
         public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 30;
 
+        public static final int REVERSE_INDEX_RPM_DROP = 100;
+
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kBrake;
 
         public static final double TOP_MOTOR_P = 0.0;
@@ -74,17 +77,19 @@ public final class Constants {
         public static final double TOP_MOTOR_ROLL_RPMS = +2000;
         public static final double BOTTOM_MOTOR_ROLL_RPMS = +4000;
 
+        public static final double TOP_MOTOR_REVERSE_INDEX_RPMS = -1000;
+        public static final double BOTTOM_MOTOR_REVERSE_INDEX_RPMS = 1000;
     }
 
     public static final class SHOOTER {
         public static final boolean TOP_MOTOR_INVERTED = false;
         public static final boolean BOTTOM_MOTOR_INVERTED = false;
 
-        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 20;
-        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 20;
+        public static final int TOP_MOTOR_STALL_LIMIT_AMPS = 40;
+        public static final int TOP_MOTOR_FREE_LIMIT_AMPS = 40;
 
-        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 20;
-        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 20;
+        public static final int BOTTOM_MOTOR_STALL_LIMIT_AMPS = 40;
+        public static final int BOTTOM_MOTOR_FREE_LIMIT_AMPS = 40;
 
         public static final IdleMode MOTOR_IDLE_MODE = IdleMode.kCoast;
 
@@ -109,6 +114,9 @@ public final class Constants {
 
         public static final double TOP_MOTOR_FAR_RPMS = 2000;
         public static final double BOTTOM_MOTOR_FAR_RPMS = 500;
+
+        public static final double TOP_MOTOR_INTAKE_RPMS = -1500;
+        public static final double BOTTOM_MOTOR_INTAKE_RPMS = -1500;
     }
 
     public static final class INTAKE_SLIDE {

@@ -6,6 +6,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.team2357.frc2023.Constants;
+import com.team2357.lib.util.Utility;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -75,6 +76,11 @@ public class IntakeRollerSubsystem extends SubsystemBase {
         // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
     }
 
+    public void reverseIndex() {
+        setRPMs(Constants.INTAKE_ROLLER.TOP_MOTOR_REVERSE_INDEX_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_REVERSE_INDEX_RPMS);
+        // setPercentOutput(Constants.INTAKE_ROLLER.TOP_MOTOR_ROLL_RPMS, Constants.INTAKE_ROLLER.BOTTOM_MOTOR_ROLL_RPMS);
+    }
+
     public void stop() {
         runIntake(0.0, 0.0);
     }
@@ -89,6 +95,10 @@ public class IntakeRollerSubsystem extends SubsystemBase {
         m_bottomPIDController.setReference(bottomRPMs, ControlType.kVelocity);
     }
 
+    public boolean isAtAmps(int amps) {
+        return m_topIntakeMotor.getOutputCurrent() >= amps || m_bottomIntakeMotor.getOutputCurrent() >= amps;
+    }
+
     public void runIntake(double topPercentOutput, double bottomPercentOutput) {
         m_topIntakeMotor.set(topPercentOutput);
         m_bottomIntakeMotor.set(bottomPercentOutput);
@@ -99,6 +109,13 @@ public class IntakeRollerSubsystem extends SubsystemBase {
         double bottomSpeed = (-bottomValue) * Constants.INTAKE_ROLLER.BOTTOM_AXIS_MAX_SPEED;
         m_topIntakeMotor.set(topSpeed);
         m_bottomIntakeMotor.set(bottomSpeed);
+    }
+
+    public boolean hasDroppedRPMs(double topRPMs, double bottomRPMs,
+            int drop) {
+        boolean topDrop = Utility.isWithinTolerance(m_topIntakeMotor.getEncoder().getVelocity(), topRPMs - drop, 50); 
+        boolean bottomDrop = Utility.isWithinTolerance(m_bottomIntakeMotor.getEncoder().getVelocity(), bottomRPMs - drop, 50); 
+        return topDrop || bottomDrop;
     }
 
 }

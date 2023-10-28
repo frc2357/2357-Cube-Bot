@@ -3,9 +3,9 @@ package com.team2357.frc2023.controls;
 import com.team2357.frc2023.Robot;
 import com.team2357.frc2023.commands.IntakeDeployCommandGroup;
 import com.team2357.frc2023.commands.IntakeStowCommandGroup;
-import com.team2357.frc2023.commands.intakeRoller.IntakeRollerStopMotorsCommand;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup.SHOOTER_RPMS;
+import com.team2357.frc2023.commands.shooter.ShooterIntakeCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShooterStopMotorsCommand;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.XboxRaw;
@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class SwerveDriveControls implements RumbleInterface {
@@ -67,6 +66,9 @@ public class SwerveDriveControls implements RumbleInterface {
 
         m_rightTrigger.whileTrue(new IntakeDeployCommandGroup());
         m_rightTrigger.onFalse(new IntakeStowCommandGroup());
+
+        m_leftTrigger.whileTrue(new ShooterIntakeCommandGroup());
+        m_leftTrigger.onFalse(new ShooterStopMotorsCommand());
     }
 
     public double getX() {
