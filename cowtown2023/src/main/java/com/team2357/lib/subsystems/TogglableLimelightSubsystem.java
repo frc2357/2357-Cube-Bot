@@ -41,15 +41,16 @@ public class TogglableLimelightSubsystem extends LimelightSubsystem {
     }
   }
 
-  private NetworkTableEntry m_stream = super.m_Table.getEntry("stream");
-  private NetworkTableEntry m_pipeline = super.m_Table.getEntry("pipeline");
+  private NetworkTableEntry m_stream = super.m_table.getEntry("stream");
+  private NetworkTableEntry m_pipeline = super.m_table.getEntry("pipeline");
 
   /**
    * Sets the camera stream.
    *
    * @param isLimelightPrimary True if the limelight is primary, false if not.
    */
-  public TogglableLimelightSubsystem(boolean isLimelightPrimary) {
+  public TogglableLimelightSubsystem(boolean isLimelightPrimary, String limelightName) {
+    super(limelightName);
     setStream(isLimelightPrimary);
     setPipeline(PipelineIndex.HUMAN_VIEW);
   }

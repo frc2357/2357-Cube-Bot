@@ -17,6 +17,7 @@ import com.team2357.frc2023.subsystems.IntakeRollerSubsystem;
 import com.team2357.frc2023.subsystems.ShooterSubsystem;
 import com.team2357.frc2023.subsystems.IntakeSlideSubsystem;
 import com.team2357.frc2023.subsystems.SwerveDriveSubsystem;
+import com.team2357.lib.subsystems.LimelightSubsystem;
 
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -40,6 +41,7 @@ public class Robot extends LoggedRobot {
   public static IntakeRollerSubsystem intakeRoller;
   public static ShooterSubsystem shooter;
   public static IntakeSlideSubsystem slide;
+  public static LimelightSubsystem frontLimelight;
 
   public static SwerveDriveControls driverControls;
   public static OperatorControls operatorControls;
@@ -61,6 +63,7 @@ public class Robot extends LoggedRobot {
     intakeRoller = new IntakeRollerSubsystem();
     shooter = new ShooterSubsystem();
     slide = new IntakeSlideSubsystem();
+    frontLimelight = new LimelightSubsystem(Constants.LIMELIGHT.FRONT_LIMELIGHT_NAME);
 
     m_robotContainer = new RobotContainer();
 

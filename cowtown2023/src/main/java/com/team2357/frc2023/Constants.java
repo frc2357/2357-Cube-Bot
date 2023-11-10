@@ -165,6 +165,10 @@ public final class Constants {
 
     }
 
+    public static final class LIMELIGHT {
+        public static final String FRONT_LIMELIGHT_NAME = "limelight-front";
+    }
+
     public static final class CONTROLLER {
         public static final int DRIVE_CONTROLLER_PORT = 0;
         public static final int OPERATOR_CONTROLLER_PORT = 1;
