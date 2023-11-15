@@ -57,13 +57,13 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void setRPMs(double topRPMs, double bottomRPMs) {
-        m_topPIDController.setReference(topRPMs, ControlType.kVelocity);
-        m_bottomPIDController.setReference(bottomRPMs, ControlType.kVelocity);
+        // m_topPIDController.setReference(topRPMs, ControlType.kVelocity);
+        // m_bottomPIDController.setReference(bottomRPMs, ControlType.kVelocity);
     }
 
     public void set(double topPercentOutput, double bottomPercentOutput) {
-        m_topShooterMotor.set(topPercentOutput);
-        m_bottomShooterMotor.set(bottomPercentOutput);
+        // m_topShooterMotor.set(topPercentOutput);
+        // m_bottomShooterMotor.set(bottomPercentOutput);
     }
 
     public void stopShooterMotors() {

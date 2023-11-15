@@ -97,5 +97,24 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     public void updatePoseEstimator() {
         m_swerve.updateOdometry();
     }
+
+    public void rotateToGamepiece(double error) {
+        double rotation = Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(error);
+        System.out.print("RotationError: ");
+        System.out.println(error);
+        System.out.print("Rotation: ");
+        System.out.println(rotation);
+        drive(new Translation2d(), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
+    }
+
+    public void translateToGamepiece(double error) {
+        double translation = Constants.SWERVE.TRANSLATION_PID_CONTROLLER.calculate(error);
+        System.out.print("TranslationError: ");
+        System.out.println(error);
+        System.out.print("Translation: ");
+        System.out.println(translation);
+        
+        drive(new Translation2d(translation, 0), 0, false, false);
+    }
     
 }

@@ -86,13 +86,13 @@ public class IntakeRollerSubsystem extends SubsystemBase {
     }
 
     public void setPercentOutput(double topPO, double bottomPO) {
-        m_topIntakeMotor.set(topPO);
-        m_bottomIntakeMotor.set(bottomPO);
+        // m_topIntakeMotor.set(topPO);
+        // m_bottomIntakeMotor.set(bottomPO);
     }
 
     public void setRPMs(double topRPMs, double bottomRPMs) {
-        m_topPIDController.setReference(topRPMs, ControlType.kVelocity);
-        m_bottomPIDController.setReference(bottomRPMs, ControlType.kVelocity);
+        // m_topPIDController.setReference(topRPMs, ControlType.kVelocity);
+        // m_bottomPIDController.setReference(bottomRPMs, ControlType.kVelocity);
     }
 
     public boolean isAtAmps(int amps) {
@@ -100,15 +100,15 @@ public class IntakeRollerSubsystem extends SubsystemBase {
     }
 
     public void runIntake(double topPercentOutput, double bottomPercentOutput) {
-        m_topIntakeMotor.set(topPercentOutput);
-        m_bottomIntakeMotor.set(bottomPercentOutput);
+        // m_topIntakeMotor.set(topPercentOutput);
+        // m_bottomIntakeMotor.set(bottomPercentOutput);
     }
 
     public void setAxisRollerSpeeds(double topValue, double bottomValue) {
         double topSpeed = (-topValue) * Constants.INTAKE_ROLLER.TOP_AXIS_MAX_SPEED;
         double bottomSpeed = (-bottomValue) * Constants.INTAKE_ROLLER.BOTTOM_AXIS_MAX_SPEED;
-        m_topIntakeMotor.set(topSpeed);
-        m_bottomIntakeMotor.set(bottomSpeed);
+        // m_topIntakeMotor.set(topSpeed);
+        // m_bottomIntakeMotor.set(bottomSpeed);
     }
 
     public boolean hasDroppedRPMs(double topRPMs, double bottomRPMs,
