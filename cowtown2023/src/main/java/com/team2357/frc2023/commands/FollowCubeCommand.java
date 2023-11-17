@@ -8,6 +8,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class FollowCubeCommand extends CommandBase {
+    private int hangTimer = 0;
+
     public FollowCubeCommand() {
         addRequirements(Robot.drive);
     }
@@ -24,7 +26,6 @@ public class FollowCubeCommand extends CommandBase {
         double translationSpeed = 0;
         boolean rotate = !Utility.isWithinTolerance(rotationError, Constants.SWERVE.ROTATION_OFFSET,
         Constants.SWERVE.ROTATION_TOLERANCE);
-        
         if (!Utility.isWithinTolerance(translationError, Constants.SWERVE.TRANSLATION_OFFSET,
                 Constants.SWERVE.TRANSLATION_TOLERANCE)) {
             translationSpeed = Constants.SWERVE.GAMEPIECE_TRACKING_TRANSLATION_SPEED;
@@ -34,9 +35,17 @@ public class FollowCubeCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        if(!Robot.frontLimelight.validTargetExists()){
+            hangTimer++;
+        }
+        else{
+            hangTimer = 0;
+        }
+
         return 
-            Utility.isWithinTolerance(Robot.frontLimelight.getTX(), Constants.SWERVE.ROTATION_OFFSET, Constants.SWERVE.ROTATION_TOLERANCE) &&
-            Utility.isWithinTolerance(Robot.frontLimelight.getTY(), Constants.SWERVE.TRANSLATION_OFFSET, Constants.SWERVE.TRANSLATION_TOLERANCE);
+            (Utility.isWithinTolerance(Robot.frontLimelight.getTX(), Constants.SWERVE.ROTATION_OFFSET, Constants.SWERVE.ROTATION_TOLERANCE) &&
+            Utility.isWithinTolerance(Robot.frontLimelight.getTY(), Constants.SWERVE.TRANSLATION_OFFSET, Constants.SWERVE.TRANSLATION_TOLERANCE))
+            & hangTimer >= Constants.SWERVE.GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS;
     }
 
     @Override

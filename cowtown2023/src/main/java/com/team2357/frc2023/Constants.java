@@ -170,6 +170,7 @@ public final class Constants {
         public static final double ROTATION_TOLERANCE = 0.3;
         public static final double TRANSLATION_OFFSET = 0;
         public static final double TRANSLATION_TOLERANCE = 1.5;
+        public static final int GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS = 4;
 
     }
 
