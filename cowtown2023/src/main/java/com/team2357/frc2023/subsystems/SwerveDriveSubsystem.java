@@ -114,7 +114,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         System.out.print("Translation: ");
         System.out.println(translation);
         
-        drive(new Translation2d(translation, 0), 0, false, false);
+        drive(new Translation2d(0, -translation), 0, false, false);
     }
     
 }

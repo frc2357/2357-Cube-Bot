@@ -165,12 +165,12 @@ public final class Constants {
         public static final double TIME_TO_COAST_SECONDS = 5000;
 
         public static final PIDController ROTATION_PID_CONTROLLER = new PIDController(0.025, 0, 0);
-        public static final PIDController TRANSLATION_PID_CONTROLLER = new PIDController(0, 0, 0);
+        public static final PIDController TRANSLATION_PID_CONTROLLER = new PIDController(0.035, 0, 0);
 
         public static final double ROTATION_OFFSET = 0;
         public static final double ROTATION_TOLERANCE = 0.25;
         public static final double TRANSLATION_OFFSET = 0;
-        public static final double TRANSLATION_TOLERANCE = 1;
+        public static final double TRANSLATION_TOLERANCE = 0.3;
 
     }
 

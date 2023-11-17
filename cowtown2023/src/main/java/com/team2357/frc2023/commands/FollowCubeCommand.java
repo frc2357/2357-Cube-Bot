@@ -22,10 +22,10 @@ public class FollowCubeCommand extends CommandBase {
         double rotationError = Robot.frontLimelight.getTX();
         double translationError = Robot.frontLimelight.getTY();
 
-        if (!Utility.isWithinTolerance(rotationError, Constants.SWERVE.ROTATION_OFFSET,
+        /*if (!Utility.isWithinTolerance(rotationError, Constants.SWERVE.ROTATION_OFFSET,
                 Constants.SWERVE.ROTATION_TOLERANCE)) {
             Robot.drive.rotateToGamepiece(rotationError);
-        } else if (!Utility.isWithinTolerance(translationError, Constants.SWERVE.TRANSLATION_OFFSET,
+        } else */if (!Utility.isWithinTolerance(translationError, Constants.SWERVE.TRANSLATION_OFFSET,
                 Constants.SWERVE.TRANSLATION_TOLERANCE)) {
             Robot.drive.translateToGamepiece(translationError);
         }
