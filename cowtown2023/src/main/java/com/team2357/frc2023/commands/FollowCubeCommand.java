@@ -21,14 +21,15 @@ public class FollowCubeCommand extends CommandBase {
     public void execute() {
         double rotationError = Robot.frontLimelight.getTX();
         double translationError = Robot.frontLimelight.getTY();
-
-        /*if (!Utility.isWithinTolerance(rotationError, Constants.SWERVE.ROTATION_OFFSET,
-                Constants.SWERVE.ROTATION_TOLERANCE)) {
-            Robot.drive.rotateToGamepiece(rotationError);
-        } else */if (!Utility.isWithinTolerance(translationError, Constants.SWERVE.TRANSLATION_OFFSET,
+        double translationSpeed = 0;
+        boolean rotate = !Utility.isWithinTolerance(rotationError, Constants.SWERVE.ROTATION_OFFSET,
+        Constants.SWERVE.ROTATION_TOLERANCE);
+        
+        if (!Utility.isWithinTolerance(translationError, Constants.SWERVE.TRANSLATION_OFFSET,
                 Constants.SWERVE.TRANSLATION_TOLERANCE)) {
-            Robot.drive.translateToGamepiece(translationError);
+            translationSpeed = Constants.SWERVE.GAMEPIECE_TRACKING_TRANSLATION_SPEED;
         }
+        Robot.drive.translateAndRotateToGamepiece(rotationError, translationError, translationSpeed, rotate);
     }
 
     @Override

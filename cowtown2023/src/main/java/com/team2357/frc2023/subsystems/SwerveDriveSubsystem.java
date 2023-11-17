@@ -108,13 +108,25 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     public void translateToGamepiece(double error) {
-        double translation = Constants.SWERVE.TRANSLATION_PID_CONTROLLER.calculate(error);
         System.out.print("TranslationError: ");
         System.out.println(error);
-        System.out.print("Translation: ");
-        System.out.println(translation);
-        
-        drive(new Translation2d(0, -translation), 0, false, false);
+        drive(new Translation2d(0, Constants.SWERVE.GAMEPIECE_TRACKING_TRANSLATION_SPEED * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), 0, false, false);
+    }
+
+    public void translateAndRotateToGamepiece(double rotationError, double translationError, double translationSpeed, boolean rotate){
+        System.out.print("TranslationError: ");
+        System.out.println(translationError);
+        double rotation = 0;
+        if(rotate){
+            rotation = Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError);
+        }
+        System.out.print("RotationError: ");
+        System.out.println(rotationError);
+        System.out.print("Rotation: ");
+        System.out.println(rotation);
+        System.out.print("Rotating: ");
+        System.out.println(rotate);
+        drive(new Translation2d(0, translationSpeed * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
     }
     
 }
