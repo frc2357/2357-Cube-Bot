@@ -25,7 +25,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     SwerveDriveControls driveControls = new SwerveDriveControls(Constants.CONTROLLER.DRIVE_CONTROLLER_PORT, Constants.CONTROLLER.DRIVE_CONTROLLER_DEADBAND);
-    OperatorControls operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
+    // OperatorControls operatorControls = new OperatorControls(Constants.CONTROLLER.OPERATOR_CONTROLLER_PORT);
     Robot.drive.setDefaultCommand(new DefaultDriveCommand(Robot.drive, driveControls));
 
     m_autoCommandChooser = new AutoCommandChooser();

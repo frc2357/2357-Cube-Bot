@@ -1,6 +1,7 @@
 package com.team2357.frc2023.controls;
 
 import com.team2357.frc2023.Robot;
+import com.team2357.frc2023.commands.FollowCubeCommand;
 import com.team2357.frc2023.commands.IntakeDeployCommandGroup;
 import com.team2357.frc2023.commands.IntakeStowCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup;
@@ -69,6 +70,8 @@ public class SwerveDriveControls implements RumbleInterface {
 
         m_leftTrigger.whileTrue(new ShooterIntakeCommandGroup());
         m_leftTrigger.onFalse(new ShooterStopMotorsCommand());
+
+        m_rightBumper.whileTrue(new FollowCubeCommand());
     }
 
     public double getX() {
