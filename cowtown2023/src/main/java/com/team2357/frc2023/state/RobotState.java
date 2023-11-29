@@ -8,8 +8,8 @@ public class RobotState {
     private static final RobotState s_instance = new RobotState();
 
     public static enum DriveControlState {
-        FIELD_RELATIVE, // Manual control of the robot is field relative
-        ROBOT_CENTRIC // Manual control of the robot is robot centric
+        COMPETITION_MODE,
+        DEMO_MODE
     }
 
     public static Alliance getAlliance() {
@@ -28,12 +28,19 @@ public class RobotState {
         s_instance.setAlliance(alliance);
     }
 
-    public static boolean isFieldRelative() {
-        return s_instance.m_currentDriveControlState == DriveControlState.FIELD_RELATIVE;
-    }
-
     public static DriveControlState getDriveControlState() {
         return s_instance.m_currentDriveControlState;
+    }
+
+    public static void toggleDriveControlState() {
+        switch (getDriveControlState()) {
+            case COMPETITION_MODE:
+                setDriveControlState(DriveControlState.DEMO_MODE);
+                break;
+            case DEMO_MODE:
+                setDriveControlState(DriveControlState.COMPETITION_MODE);
+                break;
+        }
     }
 
     public static void setDriveControlState(DriveControlState driveControlState) {
@@ -46,7 +53,7 @@ public class RobotState {
 
     private RobotState() {
         m_alliance = Alliance.Invalid;
-        m_currentDriveControlState = DriveControlState.FIELD_RELATIVE;
+        m_currentDriveControlState = DriveControlState.COMPETITION_MODE;
         m_zeroed = false;
     }
 

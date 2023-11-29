@@ -1,7 +1,6 @@
 package com.team2357.frc2023.commands.auto.util;
 
 import com.team2357.frc2023.Robot;
-import com.team2357.frc2023.state.RobotState;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -26,6 +25,6 @@ public class MoveForwardCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        Robot.drive.drive(new Translation2d(), 0, RobotState.isFieldRelative(), false);
+        Robot.drive.drive(new Translation2d(), 0, true, false);
     }
 }

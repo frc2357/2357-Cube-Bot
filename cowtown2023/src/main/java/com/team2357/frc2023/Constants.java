@@ -163,6 +163,7 @@ public final class Constants {
 
         public static final double TIME_TO_COAST_SECONDS = 5000;
 
+        public static final double DEMO_MODE_DRIVE_REDUCTION = 1/2;
     }
 
     public static final class CONTROLLER {
