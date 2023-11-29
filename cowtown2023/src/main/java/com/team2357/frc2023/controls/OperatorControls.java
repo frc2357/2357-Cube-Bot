@@ -7,6 +7,7 @@ import com.team2357.frc2023.commands.human.panic.IntakeSlideAxisCommand;
 import com.team2357.frc2023.commands.human.panic.ShooterAxisCommand;
 import com.team2357.frc2023.commands.intakeRoller.IntakeRollerPickupCubeCommand;
 import com.team2357.frc2023.commands.intakeRoller.IntakeRollerRollCubeCommand;
+import com.team2357.frc2023.state.RobotState;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.Utility;
 import com.team2357.lib.util.XboxRaw;
@@ -178,6 +179,10 @@ public class OperatorControls implements RumbleInterface {
         upDPadOnly.whileTrue(new ShooterAxisCommand(rightTriggerAxis));
 
         downDPadOnly.whileTrue(new IntakeRollerAxisCommand(topIntakeRollerAxis, bottomIntakeRollerAxis));
+
+        m_startButton.onTrue(new InstantCommand(() -> {
+            RobotState.toggleDriveControlState();
+        }));
     
     }
 

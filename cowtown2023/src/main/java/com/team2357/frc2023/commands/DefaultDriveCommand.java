@@ -33,6 +33,6 @@ public class DefaultDriveCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_swerve.drive(new Translation2d(), 0, RobotState.isFieldRelative(), false);
+        m_swerve.drive(new Translation2d(), 0, true, false);
     }
 }

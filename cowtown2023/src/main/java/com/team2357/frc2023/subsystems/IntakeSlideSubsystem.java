@@ -7,6 +7,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.team2357.frc2023.Constants;
+import com.team2357.frc2023.state.RobotState;
 import com.team2357.lib.subsystems.ClosedLoopSubsystem;
 import com.team2357.lib.util.Utility;
 
@@ -60,9 +61,15 @@ public class IntakeSlideSubsystem extends ClosedLoopSubsystem {
     }
 
     public void setSlideRotations(double rotations) {
-        setClosedLoopEnabled(true);
-        m_targetRotations = rotations;
-        m_slidePIDController.setReference(m_targetRotations, ControlType.kSmartMotion);
+        switch (RobotState.getDriveControlState()) {
+            case COMPETITION_MODE: {
+                setClosedLoopEnabled(true);
+                m_targetRotations = rotations;
+                m_slidePIDController.setReference(m_targetRotations, ControlType.kSmartMotion);
+            }
+            default:
+                return;
+        }
     }
 
     public void setSlideAxisSpeed(double axisSpeed) {

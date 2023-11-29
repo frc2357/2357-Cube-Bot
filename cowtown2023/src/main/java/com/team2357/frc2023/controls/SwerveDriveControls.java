@@ -1,5 +1,6 @@
 package com.team2357.frc2023.controls;
 
+import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.Robot;
 import com.team2357.frc2023.commands.IntakeDeployCommandGroup;
 import com.team2357.frc2023.commands.IntakeStowCommandGroup;
@@ -7,6 +8,7 @@ import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShootCubeCommandGroup.SHOOTER_RPMS;
 import com.team2357.frc2023.commands.shooter.ShooterIntakeCommandGroup;
 import com.team2357.frc2023.commands.shooter.ShooterStopMotorsCommand;
+import com.team2357.frc2023.state.RobotState;
 import com.team2357.lib.triggers.AxisThresholdTrigger;
 import com.team2357.lib.util.XboxRaw;
 
@@ -103,8 +105,15 @@ public class SwerveDriveControls implements RumbleInterface {
     public double modifyAxis(double value) {
         value = deadband(value, m_deadband);
         value = Math.copySign(value * value, value);
+        switch (RobotState.getDriveControlState()) {
+            case COMPETITION_MODE:
+                return value;
+            case DEMO_MODE:
+                return value * Constants.SWERVE.DEMO_MODE_DRIVE_REDUCTION;
+        }
         return value;
     }
+
 
     public void setRumble(RumbleType type, double intensity) {
         m_controller.setRumble(type, intensity);
