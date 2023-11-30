@@ -140,12 +140,12 @@ public class LimelightSubsystem extends ClosedLoopSubsystem {
 
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
 
-    if (DriverStation.getAlliance().get() == Alliance.Blue) {
+    if (DriverStation.getAlliance() == Alliance.Blue) {
       m_poseListenerHandle = inst.addListener(
           m_botposeWpiBlue,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
           botposeConsumer);
-    } else if (DriverStation.getAlliance().get() == Alliance.Red) {
+    } else if (DriverStation.getAlliance() == Alliance.Red) {
       m_poseListenerHandle = inst.addListener(
           m_botposeWpiRed,
           EnumSet.of(NetworkTableEvent.Kind.kValueAll),
@@ -346,9 +346,9 @@ public class LimelightSubsystem extends ClosedLoopSubsystem {
   }
 
   public Pose2d getCurrentAllianceLimelightPose() {
-    if (DriverStation.getAlliance().get() == Alliance.Blue) {
+    if (DriverStation.getAlliance() == Alliance.Blue) {
       return getBluePose();
-    } else if (DriverStation.getAlliance().get() == Alliance.Red) {
+    } else if (DriverStation.getAlliance() == Alliance.Red) {
       return getRedPose();
     } else {
       return null;
@@ -364,9 +364,9 @@ public class LimelightSubsystem extends ClosedLoopSubsystem {
   }
 
   public double getCurrentAllianceBotposeTimestamp() {
-    if (DriverStation.getAlliance().get() == Alliance.Blue) {
+    if (DriverStation.getAlliance() == Alliance.Blue) {
       return getBlueBotposeTimestamp();
-    } else if (DriverStation.getAlliance().get() == Alliance.Red) {
+    } else if (DriverStation.getAlliance() == Alliance.Red) {
       return getRedBotposeTimestamp();
     } else {
       return Double.NaN;

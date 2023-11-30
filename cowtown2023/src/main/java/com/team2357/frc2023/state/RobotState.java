@@ -45,7 +45,7 @@ public class RobotState {
     private boolean m_zeroed;
 
     private RobotState() {
-        m_alliance = null;
+        m_alliance = Alliance.Invalid;
         m_currentDriveControlState = DriveControlState.FIELD_RELATIVE;
         m_zeroed = false;
     }

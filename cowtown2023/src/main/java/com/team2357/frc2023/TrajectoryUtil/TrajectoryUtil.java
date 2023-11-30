@@ -72,7 +72,7 @@ public class TrajectoryUtil {
 			if (resetOdometry) {
 				PathPlannerState initialState = trajectory.getInitialState();
 				initialState = PathPlannerTrajectory.transformStateForAlliance(initialState,
-						DriverStation.getAlliance().get());
+						DriverStation.getAlliance());
 				Pose2d initialPose = new Pose2d(initialState.poseMeters.getTranslation(),
 						initialState.holonomicRotation);
                         Robot.drive.resetPoseEstimator(initialPose);
