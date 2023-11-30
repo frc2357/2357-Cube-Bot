@@ -45,7 +45,7 @@ public class FollowCubeCommand extends CommandBase {
         return 
             (Utility.isWithinTolerance(Robot.frontLimelight.getTX(), Constants.SWERVE.ROTATION_OFFSET, Constants.SWERVE.ROTATION_TOLERANCE) &&
             Utility.isWithinTolerance(Robot.frontLimelight.getTY(), Constants.SWERVE.TRANSLATION_OFFSET, Constants.SWERVE.TRANSLATION_TOLERANCE))
-            & hangTimer >= Constants.SWERVE.GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS;
+            & (hangTimer >= Constants.SWERVE.GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS || Robot.frontLimelight.validTargetExists());
     }
 
     @Override

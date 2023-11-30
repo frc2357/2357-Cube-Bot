@@ -4,6 +4,8 @@
 
 package com.team2357.frc2023;
 
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.auto.PIDConstants;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -172,6 +174,10 @@ public final class Constants {
         public static final double TRANSLATION_TOLERANCE = 1.5;
         public static final int GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS = 4;
 
+        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(2.5, 1.5);
+        public static final PIDController PATHPLANNER_AUTO_X_CONTROLLER = new PIDController(1.5, 0, 0);
+        public static final PIDController PATHPLANNER_AUTO_Y_CONTROLLER = new PIDController(1.5, 0, 0);
+        public static final PIDController PATHPLANNER_AUTO_ROTATION_CONTROLLER = new PIDController(0.5, 0, 0);
     }
 
     public static final class LIMELIGHT {
