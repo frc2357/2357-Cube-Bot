@@ -124,30 +124,19 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     public void translateAndRotateToGamepiece(double rotationError, double translationError, double translationSpeed, boolean rotate){
-        System.out.print("TranslationError: ");
-        System.out.println(translationError);
-        double rotation = 0;
-        if(rotate){
-            rotation = Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError);
-        }
-        System.out.print("RotationError: ");
-        System.out.println(rotationError);
-        System.out.print("Rotation: ");
-        System.out.println(rotation);
-        System.out.print("Rotating: ");
-        System.out.println(rotate);
+        double rotation = rotate ? Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError) : 0;
+        System.out.println("RotationError: " + rotationError);
+        System.out.println("Rotation: " + rotation);
+        System.out.println("Rotating: " + rotate);
         drive(new Translation2d(0, translationSpeed * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
     }
 
     public void trackGamepieceDriverContrallable(double rotationError, double translationXSpeed, double translationYSpeed, boolean rotate){
-        double rotation = 0;
-        if(rotate){
-            rotation = Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError);
-        }
-        System.out.print("RotationError: ");
-        System.out.println(rotationError);
-        System.out.print("Rotation: ");
-        System.out.println(rotation);
+        double rotation = rotate ? Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError) : 0;
+        System.out.println("RotationError: " + rotationError);
+        System.out.println("Rotation: " + rotation);
+        System.out.println("Translation X Speed : " + translationXSpeed);
+        System.out.println("Translation Y Speed : " + translationYSpeed);
         drive(new Translation2d(translationXSpeed, translationYSpeed * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
     
     }
