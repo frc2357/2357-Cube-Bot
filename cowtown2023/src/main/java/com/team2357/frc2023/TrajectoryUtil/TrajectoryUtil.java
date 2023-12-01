@@ -87,7 +87,9 @@ public class TrajectoryUtil {
 				Constants.SWERVE.PATHPLANNER_AUTO_X_CONTROLLER,
 				Constants.SWERVE.PATHPLANNER_AUTO_Y_CONTROLLER,
 				Constants.SWERVE.PATHPLANNER_AUTO_ROTATION_CONTROLLER,
-				Robot.drive.setSwerveStatesConsumer(), false, Robot.drive
+				Robot.drive.getSwerveStatesConsumer(), 
+				Constants.SWERVE.PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR, 
+				Robot.drive
 				));
 
 		pathCommand.addCommands(new InstantCommand(() -> {

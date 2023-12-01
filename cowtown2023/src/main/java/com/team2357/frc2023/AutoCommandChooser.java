@@ -1,5 +1,6 @@
 package com.team2357.frc2023;
 
+import com.team2357.frc2023.TrajectoryUtil.TrajectoryUtil;
 import com.team2357.frc2023.commands.auto.ScoreHigh;
 import com.team2357.frc2023.commands.auto.ScoreHighBalance;
 import com.team2357.frc2023.commands.auto.ScoreHighMoveForward;
@@ -17,6 +18,7 @@ public class AutoCommandChooser {
     private SendableChooser<Command> m_chooser;
 
     public AutoCommandChooser() {
+
         m_autoCommands = new Command[] {
             new ScoreHighBalance(),
             new ScoreHighMoveForward(),
@@ -24,6 +26,9 @@ public class AutoCommandChooser {
             new ScoreMidBalance(),
             new ScoreMidMoveForward(),
             new ScoreMid(),
+            new TrajectoryUtil().createDrivePathCommand(
+                TrajectoryUtil.createPathPlannerTrajectory("RotoTuningPath",
+                Constants.SWERVE.DEFAULT_PATH_CONSTRAINTS), true)
         };
 
         m_chooser = new SendableChooser<>();

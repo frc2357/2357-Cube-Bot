@@ -174,10 +174,12 @@ public final class Constants {
         public static final double TRANSLATION_TOLERANCE = 1.5;
         public static final int GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS = 4;
 
-        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(2.5, 1.5);
-        public static final PIDController PATHPLANNER_AUTO_X_CONTROLLER = new PIDController(1.5, 0, 0);
-        public static final PIDController PATHPLANNER_AUTO_Y_CONTROLLER = new PIDController(1.5, 0, 0);
+        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(1.5, 0.5);
+        public static final PIDController PATHPLANNER_AUTO_X_CONTROLLER = new PIDController(0.5, 0, 0);
+        public static final PIDController PATHPLANNER_AUTO_Y_CONTROLLER = new PIDController(0.5, 0, 0);
         public static final PIDController PATHPLANNER_AUTO_ROTATION_CONTROLLER = new PIDController(0.5, 0, 0);
+        public static final boolean PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR = false;
+        public static final boolean PATHPLANNER_AUTO_RESET_ODOMERTY_ON_AUTO_START = true;
     }
 
     public static final class LIMELIGHT {

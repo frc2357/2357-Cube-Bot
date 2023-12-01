@@ -4,12 +4,7 @@ import java.io.File;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import com.ctre.phoenix.Util;
-import com.pathplanner.lib.PathPlanner;
-import com.pathplanner.lib.PathPlannerTrajectory;
 import com.team2357.frc2023.Constants;
-import com.team2357.lib.util.Utility;
-import com.team2357.log.lib.Utils;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,8 +14,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import swervelib.SwerveDrive;
 import swervelib.SwerveModule;
@@ -36,7 +29,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     public SwerveDriveSubsystem(File directory) {
         SwerveDriveTelemetry.verbosity = TelemetryVerbosity.NONE;
         try {
-            m_swerve = new SwerveParser(directory).createSwerveDrive(Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND);
+            m_swerve = new SwerveParser(directory).createSwerveDrive();
 
             SwerveModule[] modules = m_swerve.getModules();
             for (SwerveModule module : modules) {
@@ -52,7 +45,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     } 
     
     public ChassisSpeeds getTargetSpeeds(double x, double y, Rotation2d rotation) {
-        return m_swerve.swerveController.getTargetSpeeds(x, y, rotation.getRadians(), getYaw().getRadians(), Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND);
+        return m_swerve.swerveController.getTargetSpeeds(x, y, rotation.getRadians(), getYaw().getRadians());
         
     }
 
@@ -145,7 +138,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         m_swerve.setChassisSpeeds(chassisSpeeds);
     }
 
-    public Consumer<SwerveModuleState[]> setSwerveStatesConsumer(){
+    public Consumer<SwerveModuleState[]> getSwerveStatesConsumer(){
         return new Consumer<SwerveModuleState[]>() {
 
             @Override
