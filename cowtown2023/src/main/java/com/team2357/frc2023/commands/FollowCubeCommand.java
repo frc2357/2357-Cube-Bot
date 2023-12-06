@@ -30,7 +30,7 @@ public class FollowCubeCommand extends CommandBase {
                 Constants.SWERVE.TRANSLATION_TOLERANCE)) {
             translationSpeed = Constants.SWERVE.GAMEPIECE_TRACKING_TRANSLATION_SPEED;
         }
-        Robot.drive.translateAndRotateToGamepiece(rotationError, translationError, translationSpeed, rotate);
+        Robot.drive.translateAndRotateToGamepiece(rotationError, translationSpeed, rotate);
     }
 
     @Override

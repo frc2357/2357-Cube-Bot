@@ -5,7 +5,6 @@
 package com.team2357.frc2023;
 
 import com.pathplanner.lib.PathConstraints;
-import com.pathplanner.lib.auto.PIDConstants;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -174,12 +173,7 @@ public final class Constants {
         public static final double TRANSLATION_TOLERANCE = 1.5;
         public static final int GAMEPIECE_TRACKING_LOST_TARGET_ALLOWED_LOOPS = 4;
 
-        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(1.5, 0.5);
-        public static final PIDController PATHPLANNER_AUTO_X_CONTROLLER = new PIDController(0.5, 0, 0);
-        public static final PIDController PATHPLANNER_AUTO_Y_CONTROLLER = new PIDController(0.5, 0, 0);
-        public static final PIDController PATHPLANNER_AUTO_ROTATION_CONTROLLER = new PIDController(0.5, 0, 0);
-        public static final boolean PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR = false;
-        public static final boolean PATHPLANNER_AUTO_RESET_ODOMERTY_ON_AUTO_START = true;
+        
     }
 
     public static final class LIMELIGHT {
@@ -196,5 +190,17 @@ public final class Constants {
         public static final double RUMBLE_INTENSITY = 0.5;
         public static final double RUMBLE_TIMEOUT_SECONDS_ON_TELEOP_AUTO = 1;
     }
+
+    public static final class PATHPLANNER{
+        public static final PathConstraints DEFAULT_PATH_CONSTRAINTS = new PathConstraints(1.5, 0.5);
+
+        public static final PIDController PATHPLANNER_AUTO_X_CONTROLLER = new PIDController(0.5, 0, 0);
+        public static final PIDController PATHPLANNER_AUTO_Y_CONTROLLER = new PIDController(0.5, 0, 0);
+        public static final PIDController PATHPLANNER_AUTO_ROTATION_CONTROLLER = new PIDController(0.5, 0, 0);
+
+        public static final boolean PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR = false;
+        public static final boolean PATHPLANNER_AUTO_RESET_ODOMERTY_ON_AUTO_START = true;
+    }
+
 
 }

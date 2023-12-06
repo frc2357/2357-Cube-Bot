@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.inputs.LoggedSystemStats;
+
 import com.team2357.frc2023.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -14,6 +17,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import swervelib.SwerveDrive;
 import swervelib.SwerveModule;
@@ -51,6 +55,8 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        // Logger.getInstance().recordOutput("Swerve States", m_swerve.getStates());
+        // Logger.getInstance().recordOutput("Robot Pose", getPose());
     }
 
     public void setBrakeMode(boolean brake) {
@@ -101,22 +107,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         m_swerve.updateOdometry();
     }
 
-    public void rotateToGamepiece(double error) {
-        double rotation = Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(error);
-        System.out.print("RotationError: ");
-        System.out.println(error);
-        System.out.print("Rotation: ");
-        System.out.println(rotation);
-        drive(new Translation2d(), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
-    }
-
-    public void translateToGamepiece(double error) {
-        System.out.print("TranslationError: ");
-        System.out.println(error);
-        drive(new Translation2d(0, Constants.SWERVE.GAMEPIECE_TRACKING_TRANSLATION_SPEED * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), 0, false, false);
-    }
-
-    public void translateAndRotateToGamepiece(double rotationError, double translationError, double translationSpeed, boolean rotate){
+    public void translateAndRotateToGamepiece(double rotationError, double translationSpeed, boolean rotate){
         double rotation = rotate ? Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError) : 0;
         System.out.println("RotationError: " + rotationError);
         System.out.println("Rotation: " + rotation);
@@ -124,7 +115,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         drive(new Translation2d(0, translationSpeed * Constants.SWERVE.MAX_VELOCITY_METERS_PER_SECOND), -rotation * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, false, false);
     }
 
-    public void trackGamepieceDriverContrallable(double rotationError, double translationXSpeed, double translationYSpeed, boolean rotate){
+    public void trackGamepieceDriverControllable(double rotationError, double translationXSpeed, double translationYSpeed, boolean rotate){
         double rotation = rotate ? Constants.SWERVE.ROTATION_PID_CONTROLLER.calculate(rotationError) : 0;
         System.out.println("RotationError: " + rotationError);
         System.out.println("Rotation: " + rotation);

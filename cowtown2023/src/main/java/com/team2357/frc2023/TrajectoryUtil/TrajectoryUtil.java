@@ -29,7 +29,7 @@ public class TrajectoryUtil {
 
 	public static PathPlannerTrajectory createPathPlannerTrajectory(String trajectoryFileName) {
 		return PathPlanner.loadPath(trajectoryFileName,
-				Constants.SWERVE.DEFAULT_PATH_CONSTRAINTS);
+				Constants.PATHPLANNER.DEFAULT_PATH_CONSTRAINTS);
 	}
 
 	public static SequentialCommandGroup createTrajectoryPathCommand(String trajectoryFileName,
@@ -56,7 +56,7 @@ public class TrajectoryUtil {
 		points.add(endPoint);
 
 		PathPlannerTrajectory trajectory = PathPlanner.generatePath(
-				Constants.SWERVE.DEFAULT_PATH_CONSTRAINTS, false, points);
+				Constants.PATHPLANNER.DEFAULT_PATH_CONSTRAINTS, false, points);
 
 		return createDrivePathCommand(trajectory, resetOdometry);
 	}
@@ -70,25 +70,25 @@ public class TrajectoryUtil {
 
 		pathCommand.addCommands(new InstantCommand(() -> {
 			if (resetOdometry) {
+				Robot.drive.resetPoseEstimator(new Pose2d());
+			}
 				PathPlannerState initialState = trajectory.getInitialState();
 				initialState = PathPlannerTrajectory.transformStateForAlliance(initialState,
 						DriverStation.getAlliance());
 				Pose2d initialPose = new Pose2d(initialState.poseMeters.getTranslation(),
 						initialState.holonomicRotation);
                         Robot.drive.resetPoseEstimator(initialPose);
-			}
-			Robot.drive.resetPoseEstimator(new Pose2d());
 			Robot.drive.postTrajectory(trajectory);
 		}));
 		pathCommand.addCommands(new PPSwerveControllerCommand(
 				trajectory,
 				Robot.drive.getPoseSupplier(),
 				Robot.drive.getKinematics(),
-				Constants.SWERVE.PATHPLANNER_AUTO_X_CONTROLLER,
-				Constants.SWERVE.PATHPLANNER_AUTO_Y_CONTROLLER,
-				Constants.SWERVE.PATHPLANNER_AUTO_ROTATION_CONTROLLER,
+				Constants.PATHPLANNER.PATHPLANNER_AUTO_X_CONTROLLER,
+				Constants.PATHPLANNER.PATHPLANNER_AUTO_Y_CONTROLLER,
+				Constants.PATHPLANNER.PATHPLANNER_AUTO_ROTATION_CONTROLLER,
 				Robot.drive.getSwerveStatesConsumer(), 
-				Constants.SWERVE.PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR, 
+				Constants.PATHPLANNER.PATHPLANNER_AUTO_TRNALSATE_AUTOS_FOR_ALLIANCE_COLOR, 
 				Robot.drive
 				));
 
