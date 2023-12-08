@@ -1,0 +1,9 @@
+Mass Kg: 56.70
+Moment of Inertia Kg*M^2: 55.14
+Max Velocity Rad/s: 10.524196138932295
+Max Tourqe Nm: 17.55
+Width M: 0.6096
+Length M: 0.6096
+Wheelbase M: 0.47625
+Trackwidth M: 0.0381
+Wheel Radius M: 0.0508
