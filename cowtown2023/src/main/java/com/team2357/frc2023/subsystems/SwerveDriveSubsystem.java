@@ -55,8 +55,8 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // Logger.getInstance().recordOutput("Swerve States", m_swerve.getStates());
-        // Logger.getInstance().recordOutput("Robot Pose", getPose());
+        Logger.getInstance().recordOutput("Swerve States", m_swerve.getStates());
+        Logger.getInstance().recordOutput("Robot Pose", getPose());
     }
 
     public void setBrakeMode(boolean brake) {
@@ -134,7 +134,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
             @Override
             public void accept(SwerveModuleState[] desiredStates) {
-                m_swerve.setModuleStates(desiredStates, true);
+                m_swerve.setModuleStates(desiredStates, false);
             }
             
         };

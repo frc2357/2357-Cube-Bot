@@ -1,6 +1,6 @@
 Mass Kg: 56.70
 Moment of Inertia Kg*M^2: 55.14
-Max Velocity Rad/s: 10.524196138932295
+Max Velocity Rad/s: 13.846480049
 Max Tourqe Nm: 17.55
 Width M: 0.6096
 Length M: 0.6096
