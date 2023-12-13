@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class ChoreoTrajectoryCommand extends SequentialCommandGroup{
     private String fileName;
-    public ChoreoTrajectoryCommand(String trajectoryFileName){
+    public ChoreoTrajectoryCommand(String trajectoryFileName, Pose2d startingPose){
         fileName = trajectoryFileName;
         //this was in the Choreo example integration, so its in here for when we copy the code for new files
         Constants.CHOREO.CHOREO_ROTATION_CONTROLLER.enableContinuousInput(-Math.PI, Math.PI);
-        Robot.drive.resetPoseEstimator(new Pose2d());
+        Robot.drive.resetPoseEstimator(startingPose);
         addCommands(
             
             new ChoreoSwerveControllerCommand(
