@@ -3,22 +3,22 @@ package com.team2357.frc2023.commands.auto.util;
 import com.team2357.frc2023.Constants;
 import com.team2357.frc2023.Robot;
 import com.team2357.frc2023.choreolib.ChoreoSwerveControllerCommand;
+import com.team2357.frc2023.choreolib.ChoreoTrajectory;
 import com.team2357.frc2023.choreolib.TrajectoryManager;
 
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class ChoreoTrajectoryCommand extends SequentialCommandGroup{
     private String fileName;
-    public ChoreoTrajectoryCommand(String trajectoryFileName, Pose2d startingPose){
-        fileName = trajectoryFileName;
+    public ChoreoTrajectoryCommand(String trajectoryFileName){
         //this was in the Choreo example integration, so its in here for when we copy the code for new files
         Constants.CHOREO.CHOREO_ROTATION_CONTROLLER.enableContinuousInput(-Math.PI, Math.PI);
-        Robot.drive.resetPoseEstimator(startingPose);
+        ChoreoTrajectory trajectory = TrajectoryManager.getInstance().getTrajectory(trajectoryFileName);
+        Robot.drive.resetPoseEstimator(trajectory.getInitialPose());
         addCommands(
             
             new ChoreoSwerveControllerCommand(
-                TrajectoryManager.getInstance().getTrajectory(trajectoryFileName),
+                trajectory,
                 Robot.drive.getPoseSupplier(), // Functional interface to feed supplier
                 Robot.drive.getKinematics(),
 
