@@ -6,28 +6,27 @@ import com.team2357.frc2023.choreolib.ChoreoSwerveControllerCommand;
 import com.team2357.frc2023.choreolib.ChoreoTrajectory;
 import com.team2357.frc2023.choreolib.TrajectoryManager;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class ChoreoTrajectoryCommand extends SequentialCommandGroup{
     private String fileName;
     public ChoreoTrajectoryCommand(String trajectoryFileName){
-        //this was in the Choreo example integration, so its in here for when we copy the code for new files
+        fileName = trajectoryFileName.replace(".json","");
         Constants.CHOREO.CHOREO_ROTATION_CONTROLLER.enableContinuousInput(-Math.PI, Math.PI);
-        ChoreoTrajectory trajectory = TrajectoryManager.getInstance().getTrajectory(trajectoryFileName);
-        Robot.drive.resetPoseEstimator(trajectory.getInitialPose());
+        ChoreoTrajectory traj = TrajectoryManager.getInstance().getTrajectory(trajectoryFileName);
         addCommands(
-            
+            new InstantCommand(() -> Robot.drive.resetPoseEstimator(traj.getInitialPose()), Robot.drive),
             new ChoreoSwerveControllerCommand(
-                trajectory,
-                Robot.drive.getPoseSupplier(), // Functional interface to feed supplier
+                traj,
+                Robot.drive.getPoseSupplier(),
                 Robot.drive.getKinematics(),
-
-                // Position controllers
                 Constants.CHOREO.CHOREO_X_CONTROLLER,
                 Constants.CHOREO.CHOREO_Y_CONTROLLER,
                 Constants.CHOREO.CHOREO_ROTATION_CONTROLLER,
                 Robot.drive.getSwerveStatesConsumer(),
-                true,
+                false,//DO NOT SET THIS TO TRUE!
+                //The robot went crazy when I did, it could be dangerous if not stopped.
                 Robot.drive));
     }
 

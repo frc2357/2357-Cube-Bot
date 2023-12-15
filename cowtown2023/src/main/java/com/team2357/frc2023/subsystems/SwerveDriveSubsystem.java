@@ -5,8 +5,6 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.inputs.LoggedSystemStats;
-
 import com.team2357.frc2023.Constants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -17,7 +15,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import swervelib.SwerveDrive;
 import swervelib.SwerveModule;
@@ -54,9 +51,12 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     @Override
-    public void periodic() {
+    public void 
+    periodic() {
         Logger.getInstance().recordOutput("Swerve States", m_swerve.getStates());
         Logger.getInstance().recordOutput("Robot Pose", getPose());
+        // System.out.println("ROBOT POSE X: " + getPose().getX());
+        // System.out.println("ROBOT POSE Y: " + getPose().getY());
     }
 
     public void setBrakeMode(boolean brake) {
@@ -125,15 +125,14 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     
     }
 
-    public void setChassisSpeeds(ChassisSpeeds chassisSpeeds){
-        m_swerve.setChassisSpeeds(chassisSpeeds);
-    }
-
     public Consumer<SwerveModuleState[]> getSwerveStatesConsumer(){
         return new Consumer<SwerveModuleState[]>() {
 
             @Override
             public void accept(SwerveModuleState[] desiredStates) {
+                // for(int i = 0; i < desiredStates.length; i++){
+                //     desiredStates[i].speedMetersPerSecond *= -1;
+                // }
                 m_swerve.setModuleStates(desiredStates, false);
             }
             
@@ -145,6 +144,8 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
             @Override
             public Pose2d get() {
+                // Pose2d pose = getPose();
+                // return new Pose2d(pose.getX(), -pose.getY(), pose.getRotation());
                 return getPose();
             }
         };

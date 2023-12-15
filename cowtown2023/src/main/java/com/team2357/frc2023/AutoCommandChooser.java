@@ -7,6 +7,7 @@ import com.team2357.frc2023.commands.auto.ScoreHighMoveForward;
 import com.team2357.frc2023.commands.auto.ScoreMid;
 import com.team2357.frc2023.commands.auto.ScoreMidBalance;
 import com.team2357.frc2023.commands.auto.ScoreMidMoveForward;
+import com.team2357.frc2023.commands.auto.util.ChoreoTrajectoryCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,7 +27,8 @@ public class AutoCommandChooser {
             new ScoreMidBalance(),
             new ScoreMidMoveForward(),
             new ScoreMid(),
-            new ChoreoRotoTuningPathCommand()
+            new ChoreoRotoTuningPathCommand(),
+            new ChoreoTrajectoryCommand("PathToTheRight.json"),
         };
 
         m_chooser = new SendableChooser<>();
