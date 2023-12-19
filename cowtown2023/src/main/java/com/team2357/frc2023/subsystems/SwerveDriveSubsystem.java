@@ -42,7 +42,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
-        m_swerve.drive(translation.rotateBy(Rotation2d.fromDegrees(-90)), rotation, fieldRelative, isOpenLoop);
+        m_swerve.drive(translation, rotation, fieldRelative, isOpenLoop);
     } 
     
     public ChassisSpeeds getTargetSpeeds(double x, double y, Rotation2d rotation) {
@@ -125,27 +125,22 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     
     }
 
-    public Consumer<SwerveModuleState[]> getSwerveStatesConsumer(){
-        return new Consumer<SwerveModuleState[]>() {
+    public Consumer<ChassisSpeeds> getChassisSpeedsConsumer(){
+        return new Consumer<ChassisSpeeds>() {
 
             @Override
-            public void accept(SwerveModuleState[] desiredStates) {
-                // for(int i = 0; i < desiredStates.length; i++){
-                //     desiredStates[i].speedMetersPerSecond *= -1;
-                // }
-                m_swerve.setModuleStates(desiredStates, false);
-            }
+            public void accept(ChassisSpeeds speeds) {
+                drive(new Translation2d(speeds.vxMetersPerSecond, speeds.vyMetersPerSecond),speeds.omegaRadiansPerSecond, false, true);
+            } 
             
         };
     }
 
-    public Supplier<Pose2d> getPoseSupplier(){
+    public Supplier<Pose2d> getChoreoPoseSupplier(){
         return new Supplier<Pose2d>() {
 
             @Override
             public Pose2d get() {
-                // Pose2d pose = getPose();
-                // return new Pose2d(pose.getX(), -pose.getY(), pose.getRotation());
                 return getPose();
             }
         };

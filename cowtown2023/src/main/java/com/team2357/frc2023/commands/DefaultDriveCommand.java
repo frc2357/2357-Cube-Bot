@@ -25,7 +25,7 @@ public class DefaultDriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        ChassisSpeeds targetSpeeds = m_swerve.getTargetSpeeds(m_controls.getX(), m_controls.getY(),
+        ChassisSpeeds targetSpeeds = m_swerve.getTargetSpeeds(m_controls.getY(), -m_controls.getX(),
                 new Rotation2d(m_controls.getRotation() * Math.PI));
 
         m_swerve.drive(SwerveController.getTranslation2d(targetSpeeds), m_controls.getRotation() * Constants.SWERVE.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND, true, false);

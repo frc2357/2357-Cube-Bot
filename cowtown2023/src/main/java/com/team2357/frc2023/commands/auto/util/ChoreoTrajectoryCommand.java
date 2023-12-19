@@ -6,6 +6,8 @@ import com.team2357.frc2023.choreolib.ChoreoSwerveControllerCommand;
 import com.team2357.frc2023.choreolib.ChoreoTrajectory;
 import com.team2357.frc2023.choreolib.TrajectoryManager;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -19,14 +21,13 @@ public class ChoreoTrajectoryCommand extends SequentialCommandGroup{
             new InstantCommand(() -> Robot.drive.resetPoseEstimator(traj.getInitialPose()), Robot.drive),
             new ChoreoSwerveControllerCommand(
                 traj,
-                Robot.drive.getPoseSupplier(),
-                Robot.drive.getKinematics(),
+                Robot.drive.getChoreoPoseSupplier(),
                 Constants.CHOREO.CHOREO_X_CONTROLLER,
                 Constants.CHOREO.CHOREO_Y_CONTROLLER,
                 Constants.CHOREO.CHOREO_ROTATION_CONTROLLER,
-                Robot.drive.getSwerveStatesConsumer(),
+                Robot.drive.getChassisSpeedsConsumer(),
                 false,//DO NOT SET THIS TO TRUE!
-                //The robot went crazy when I did, it could be dangerous if not stopped.
+                //The robot went crazy when I did, it could be dangerous right now.
                 Robot.drive));
     }
 

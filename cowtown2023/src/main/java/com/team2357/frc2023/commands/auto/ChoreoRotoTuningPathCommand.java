@@ -18,14 +18,13 @@ public class ChoreoRotoTuningPathCommand extends SequentialCommandGroup{
             new InstantCommand(() -> Robot.drive.resetPoseEstimator(traj.getInitialPose()), Robot.drive),
             new ChoreoSwerveControllerCommand(
                 traj,
-                Robot.drive.getPoseSupplier(),
-                Robot.drive.getKinematics(),
+                Robot.drive.getChoreoPoseSupplier(),
                 Constants.CHOREO.CHOREO_X_CONTROLLER,
                 Constants.CHOREO.CHOREO_Y_CONTROLLER,
                 Constants.CHOREO.CHOREO_ROTATION_CONTROLLER,
-                Robot.drive.getSwerveStatesConsumer(),
+                Robot.drive.getChassisSpeedsConsumer(),
                 false,//DO NOT SET THIS TO TRUE!
-                // The robot went crazy, it could be dangerous if not in controlled conditions.
+                //The robot went crazy when I did, it could be dangerous right now.
                 Robot.drive));
     }
 
