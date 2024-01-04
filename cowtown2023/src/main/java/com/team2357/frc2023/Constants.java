@@ -7,6 +7,7 @@ package com.team2357.frc2023;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -159,6 +160,7 @@ public final class Constants {
 
         public static final double ABSOLUTE_ENCODER_CONVERSION_FACTOR = 360;
 
+        public static final Rotation3d GYRO_OFFSET_ROTATION_3D = new Rotation3d(0, 1.5708, 0);
         public static final double MAX_VELOCITY_METERS_PER_SECOND = 14.5;
         public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = 4;
 

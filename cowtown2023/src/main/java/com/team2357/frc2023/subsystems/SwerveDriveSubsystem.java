@@ -36,6 +36,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
             for (SwerveModule module : modules) {
                 module.getAngleMotor().configureIntegratedEncoder(Constants.SWERVE.ABSOLUTE_ENCODER_CONVERSION_FACTOR);
             }
+            m_swerve.setGyroOffset(Constants.SWERVE.GYRO_OFFSET_ROTATION_3D);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -130,7 +131,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
             @Override
             public void accept(ChassisSpeeds speeds) {
-                drive(new Translation2d(speeds.vxMetersPerSecond, speeds.vyMetersPerSecond),speeds.omegaRadiansPerSecond, false, true);
+                drive(new Translation2d(speeds.vxMetersPerSecond, speeds.vyMetersPerSecond), speeds.omegaRadiansPerSecond, false, true);
             } 
             
         };
@@ -138,7 +139,6 @@ public class SwerveDriveSubsystem extends SubsystemBase {
 
     public Supplier<Pose2d> getChoreoPoseSupplier(){
         return new Supplier<Pose2d>() {
-
             @Override
             public Pose2d get() {
                 return getPose();
